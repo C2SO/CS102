@@ -18,8 +18,8 @@ public class TennisMatchesContainer implements TennisMatchesContainerInterface {
     }
 
     // Desc: insert "val" in the first available (leftmost) position in matchesarray
-    // Input:
-    // Output:
+    // Input: Match Data
+    // Output: Array of Matches
     public int[] addMatches(int val) {
         if (i == size || i > size) { // If the array is full
             newSize += size; // Add one to "newSize"
@@ -29,11 +29,11 @@ public class TennisMatchesContainer implements TennisMatchesContainerInterface {
             }
             matchesArray = newArray; // set "matchesArray" to reference "newArray"
             size = newSize; // Update the "size" value
-        } else { // if "matchesArray" is not full
-            matchesArray[i] = val; // insert "val" at "i"
-            i++; // increment "i"
         }
-        return matchesArray;
+        matchesArray[i] = val; // insert "val" at "i"
+        i++; // increment "i"
+        System.out.println(val);
+        return matchesArray; // Return array
     }
 
 }
