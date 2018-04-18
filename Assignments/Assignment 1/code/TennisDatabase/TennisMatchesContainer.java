@@ -17,7 +17,7 @@ public class TennisMatchesContainer implements TennisMatchesContainerInterface {
     // Input:
     // Output:
     public TennisMatchesContainer() {
-        matchesArray = new int[3];
+        matchesArray = new int[1];
         i = 0;
         size = 1;
         newSize = size;
@@ -38,7 +38,6 @@ public class TennisMatchesContainer implements TennisMatchesContainerInterface {
         }
         matchesArray[i] = val; // insert "val" at "i"
         i++; // increment "i"
-        System.out.println(val);
         return matchesArray; // Return array
     }
 
