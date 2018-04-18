@@ -12,11 +12,9 @@ import java.io.*;
 
 public class Assignment1 {
 
-    private static File inputFile;
-    private static Scanner read;
-    private static Scanner user;
-    private static int playersIndex = 0;
-    private static int matchesIndex = 0;
+    private static File inputFile; // Defines the input file
+    private static Scanner read; // Used to read the input file
+    private static Scanner user; // Used to read the user's input
 
     public static void main(String[] args) throws IOException {
         inputFile = new File("inputFile.txt"); // Set Input file
@@ -26,6 +24,8 @@ public class Assignment1 {
         TennisPlayersContainer tpc = new TennisPlayersContainer(); // Create TennisPlayersContainter variable
         readFile(inputFile); // Read the file
         runProgram();
+        read.close();
+        user.close();
     }
 
     public static void readFile(File inputFile) {
