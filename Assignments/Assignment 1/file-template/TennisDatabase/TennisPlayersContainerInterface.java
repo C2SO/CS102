@@ -1,6 +1,3 @@
-
-
-
 package TennisDatabase;
 
 // Interface (package-private) providing the specifications for the TennisPlayersContainer class.
@@ -26,5 +23,3 @@ interface TennisPlayersContainerInterface {
    public void printMatchesOfPlayer( String playerId ) throws TennisDatabaseRuntimeException;
    
 }
-
-

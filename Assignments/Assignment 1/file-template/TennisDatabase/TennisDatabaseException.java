@@ -1,6 +1,3 @@
-
-
-
 package TennisDatabase;
 
 // Custom (checked) exception for the TennisDatabase package, representing critical runtime errors (that must be handled).
@@ -11,5 +8,3 @@ public class TennisDatabaseException extends java.lang.Exception {
    public TennisDatabaseException( String s ) { super(s); }
    
 }
-
-

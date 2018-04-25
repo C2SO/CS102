@@ -1,6 +1,3 @@
-
-
-
 package TennisDatabase;
 
 // Interface (package-private) providing the specifications for the TennisMatch class.
@@ -21,5 +18,3 @@ interface TennisMatchInterface extends Comparable<TennisMatch> {
    public void print();
    
 }
-
-

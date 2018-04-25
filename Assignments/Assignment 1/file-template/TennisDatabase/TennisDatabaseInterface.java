@@ -1,6 +1,3 @@
-
-
-
 package TennisDatabase;
 
 import java.lang.String;
@@ -36,5 +33,3 @@ interface TennisDatabaseInterface {
       throws TennisDatabaseRuntimeException;
       
 }
-
-

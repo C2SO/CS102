@@ -1,6 +1,3 @@
-
-
-
 package TennisDatabase;
 
 import java.lang.Object;
@@ -18,5 +15,3 @@ interface TennisMatchesListInterface {
    public void printMatches() throws TennisDatabaseRuntimeException;
    
 }
-
-
