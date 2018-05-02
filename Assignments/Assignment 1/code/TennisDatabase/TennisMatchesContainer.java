@@ -1,44 +1,30 @@
-
-/*
-Nicholas Rahbany
-CS 102
-*/
-
 package TennisDatabase;
+
+import TennisDatabase.TennisDatabaseRuntimeException;
 
 public class TennisMatchesContainer implements TennisMatchesContainerInterface {
 
-    private int[] matchesArray;
-    private int i;
-    private int size;
-    public int newSize;
+    private TennisMatch[] tma;
+    private int sizeLogical;
+    private int sizePhysical;
 
-    // Desc:
-    // Input:
-    // Output:
     public TennisMatchesContainer() {
-        matchesArray = new int[1];
-        i = 0;
-        size = 1;
-        newSize = size;
+        sizePhysical = 2;
+        sizeLogical = 0;
+        tma = new TennisMatch[sizePhysical];
     }
 
-    // Desc: insert "val" in the first available (leftmost) position in matchesarray
-    // Input: Match Data
-    // Output: Array of Matches
-    public int[] addMatches(int val) {
-        if (i == size || i > size) { // If the array is full
-            newSize += size; // Add one to "newSize"
-            int[] newArray = new int[newSize]; // Make array "newArray"
-            for (int i = 0; i < size; i++) { // For all values in "matchesArray"
-                newArray[i] = matchesArray[i]; // Copy and paste data from "matchesArray" to "newArray"
+    public void insertMatch(TennisMatch m) {
+        
+    }
+
+    public void printAllMatches() throws TennisDatabaseRuntimeException {
+        if (tma.length == 0) {
+            throw new TennisDatabaseRuntimeException("No Tennis Matches Available");
+        } else {
+            for (int i = 0; i < sizeLogical; i++) {
+                tma[i].print();
             }
-            matchesArray = newArray; // set "matchesArray" to reference "newArray"
-            size = newSize; // Update the "size" value
         }
-        matchesArray[i] = val; // insert "val" at "i"
-        i++; // increment "i"
-        return matchesArray; // Return array
     }
-
 }
