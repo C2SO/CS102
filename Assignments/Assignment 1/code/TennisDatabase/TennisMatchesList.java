@@ -16,8 +16,19 @@ public class TennisMatchesList implements TennisMatchesListInterface {
         TennisMatchNode prevNode = null;
         TennisMatchNode currNode = head;
         while ((currNode != null) && (m.compareTo(currNode.getMatch()) < 0)) {
-
+            prevNode = currNode;
+            currNode = currNode.getNext();
         }
+        TennisMatchNode newNode = new TennisMatchNode(m);
+        if(currNode == head) {
+            newNode.setNext(head);
+            head = newNode;
+        }
+        else {
+            newNode.setNext(currNode);
+            prevNode.setNext(newNode);
+        }
+        numMatches++;
     }
 
     public void printMatches() {
