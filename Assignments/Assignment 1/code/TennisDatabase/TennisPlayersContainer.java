@@ -2,7 +2,7 @@ package TennisDatabase;
 
 public class TennisPlayersContainer implements TennisPlayersContainerInterface {
 
-    public TennisPlayerContainer() {
+    public void TennisPlayerContainer() {
         head = null;
         numPlayers = 0;
     }

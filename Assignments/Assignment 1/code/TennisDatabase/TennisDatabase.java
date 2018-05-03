@@ -1,7 +1,10 @@
 package TennisDatabase;
 
+import java.io.*;
+import java.util.Scanner;
+
 public class TennisDatabase implements TennisDatabaseInterface {
-    private TennisPlayersContainer tpc = new TennisPlayerContainer();
+    private TennisPlayersContainer tpc = new TennisPlayersContainer();
     private TennisMatchesContainer tmc = new TennisMatchesContainer();
 
     public TennisDatabase() {
@@ -10,6 +13,7 @@ public class TennisDatabase implements TennisDatabaseInterface {
     public void loadFile(File inputFile) {
         String line; // Defining a ling in the input file
         String[] data; // An array of the line when parsed
+        Scanner read = new Scanner(inputFile);
         while (read.hasNext()) { // If there is a line that hasn't been scanned
 
             line = read.nextLine(); // Scan the line
@@ -17,11 +21,11 @@ public class TennisDatabase implements TennisDatabaseInterface {
 
             switch (data[0].charAt(0)) { // Check to see if the line is a player or a match
             case 'P':
-                TennisPlayer p = new TennisPlayer(data[1], data[2], data[3], Int(data[4]), data[5]);
+                TennisPlayer p = new TennisPlayer(data[1], data[2], data[3], Integer.parseInt(data[4]), data[5]);
                 tpc.insertPlayer(p); // Add Player
                 break;
             case 'M':
-            TennisMatch m = new TennisMatch(data[1], data[2], data[3], data[4], data[5]);
+            TennisMatch m = new TennisMatch(data[1], data[2], Integer.parseInt(data[3]), data[4], data[5]);
                 tmc.addMatches(m); // Add Match
                 break;
             }
@@ -45,7 +49,7 @@ public class TennisDatabase implements TennisDatabaseInterface {
         tpc.insertPlayer(p);
     };
 
-    public void insertMatch(String idPlayer1, String idPlayer2, int year, int month, int day, String tournament,
+    public void insertMatch(String idPlayer1, String idPlayer2, int date, String tournament,
             String score) {
         TennisMatch m = new TennisMatch(idPlayer1, idPlayer2, year, month, day, tournament, score);
         tmc.insertMatch(m);

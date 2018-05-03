@@ -2,6 +2,10 @@ package TennisDatabase;
 
 public class TennisMatch implements TennisMatchInterface {
 
+    public TennisMatch(String idPlayer1, String idPlayer2, int date, String tournament, String score) {
+
+    }
+
     public String getPlayer1Id() {
 
     }

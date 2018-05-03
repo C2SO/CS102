@@ -33,7 +33,7 @@ interface TennisDatabaseInterface {
       // Input: All the data required for a tennis match.
       // Warning: match score must be valid.
       // Output: Throws an exception if match score is not valid.
-      public void insertMatch(String idPlayer1, String idPlayer2, int year, int month, int day, String tournament,
+      public void insertMatch(String idPlayer1, String idPlayer2, int date, String tournament,
                   String score) throws TennisDatabaseRuntimeException;
 
 }

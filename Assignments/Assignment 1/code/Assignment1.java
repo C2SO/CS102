@@ -1,3 +1,6 @@
+import java.io.*;
+import java.util.Scanner;
+
 import TennisDatabase.TennisDatabase;
 import TennisDatabase.TennisDatabaseException;
 import TennisDatabase.TennisDatabaseRuntimeException;
@@ -19,6 +22,8 @@ public class Assignment1 {
     public static void runProgram() {
         boolean systemRunning = true;
         int option;
+        Scanner user = new Scanner(System.in);
+        TennisDatabase tdb = new TennisDatabase();
         while (systemRunning) {
             System.out.println(
                     "Select an option my entering the option's number:\n1. Print Players\n2. Print Matches\n3. Print All Matches For A Player\n4. Add a Player\n5. Add a Match\n\n0. Exit");
@@ -32,15 +37,26 @@ public class Assignment1 {
                 break;
             case 3:
                 // Create scanner to scan console for id
+                String playerId = user.next();
                 tdb.printMatchesOfPlayer(playerId);
                 break;
             case 4:
                 // Create scanner to scan console for player info
+                String id = user.next();
+                String firstName = user.next();
+                String lastName = user.next();
+                Integer year = user.nextInt();
+                String country = user.next();
                 tdb.insertPlayer(id, firstName, lastName, year, country);
                 break;
             case 5:
                 // Create scanner to scan console for match info
-                tdb.insertMatch(idPlayer1, idPlayer2, year, month, day, tournament, score);
+                String idPlayer1 = user.next();
+                String idPlayer2 = user.next();
+                Integer date = user.nextInt();
+                String tournament = user.next();
+                String score = user.next();
+                tdb.insertMatch(idPlayer1, idPlayer2, date, tournament, score);
                 break;
             case 0:
                 systemRunning = false;
