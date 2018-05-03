@@ -3,6 +3,7 @@ package TennisDatabase;
 public class TennisPlayerNode implements TennisPlayerNodeInterface {
 
     public TennisPlayer getPlayer() {
+        return TennisPlayer;
     }
 
     public TennisPlayerNode getPrev() {

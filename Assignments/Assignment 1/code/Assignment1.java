@@ -9,7 +9,7 @@ public class Assignment1 {
 
     private static File inputFile; // Defines the input file
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         inputFile = new File("inputFile.txt"); // Set Input file
         TennisDatabase tdb = new TennisDatabase();
         // Check if there are no command line arguments

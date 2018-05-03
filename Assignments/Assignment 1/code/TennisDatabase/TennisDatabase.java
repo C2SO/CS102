@@ -10,7 +10,7 @@ public class TennisDatabase implements TennisDatabaseInterface {
     public TennisDatabase() {
     }
 
-    public void loadFile(File inputFile) {
+    public void loadFile(File inputFile) throws FileNotFoundException {
         String line; // Defining a ling in the input file
         String[] data; // An array of the line when parsed
         Scanner read = new Scanner(inputFile);
@@ -25,11 +25,12 @@ public class TennisDatabase implements TennisDatabaseInterface {
                 tpc.insertPlayer(p); // Add Player
                 break;
             case 'M':
-            TennisMatch m = new TennisMatch(data[1], data[2], Integer.parseInt(data[3]), data[4], data[5]);
-                tmc.addMatches(m); // Add Match
+                TennisMatch m = new TennisMatch(data[1], data[2], Integer.parseInt(data[3]), data[4], data[5]);
+                tmc.insertMatch(m); // Add Match
                 break;
             }
         }
+        read.close();
     }
 
     public void printAllPlayers() {
@@ -49,9 +50,8 @@ public class TennisDatabase implements TennisDatabaseInterface {
         tpc.insertPlayer(p);
     };
 
-    public void insertMatch(String idPlayer1, String idPlayer2, int date, String tournament,
-            String score) {
-        TennisMatch m = new TennisMatch(idPlayer1, idPlayer2, year, month, day, tournament, score);
+    public void insertMatch(String idPlayer1, String idPlayer2, int date, String tournament, String score) {
+        TennisMatch m = new TennisMatch(idPlayer1, idPlayer2, date, tournament, score);
         tmc.insertMatch(m);
     };
 }
