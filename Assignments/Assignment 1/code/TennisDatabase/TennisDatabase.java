@@ -25,8 +25,9 @@ public class TennisDatabase implements TennisDatabaseInterface {
                 tpc.insertPlayer(p); // Add Player
                 break;
             case 'M':
-                TennisMatch m = new TennisMatch(data[1], data[2], Integer.parseInt(data[3]), data[4], data[5]);
+                TennisMatch m = new TennisMatch(data[1], data[2], Integer.parseInt(data[3].substring(0,4)), Integer.parseInt(data[3].substring(4,6)), Integer.parseInt(data[3].substring(6,8)), data[4], data[5]);
                 tmc.insertMatch(m); // Add Match
+                tpc.insertMatch(m);
                 break;
             }
         }
