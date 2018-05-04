@@ -2,6 +2,9 @@ package TennisDatabase;
 
 public class TennisPlayersContainer implements TennisPlayersContainerInterface {
 
+    TennisPlayerNode head;
+    int numPlayers;
+
     public void TennisPlayerContainer() {
         head = null;
         numPlayers = 0;
@@ -52,8 +55,8 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
             } else {
                 currNode = currNode.getNext();
             }
-            return null;
         }
+        return null;
     }
 
     public void insertMatch(TennisMatch m) throws TennisDatabaseRuntimeException {

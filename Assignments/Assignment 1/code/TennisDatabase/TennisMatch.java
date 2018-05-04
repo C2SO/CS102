@@ -2,40 +2,53 @@ package TennisDatabase;
 
 public class TennisMatch implements TennisMatchInterface {
 
+    int idPlayer1;
+    int idPlayer2;
+    int date;
+    int day;
+    int month;
+    int year;
+    String tournament;
+    String score;
+
     public TennisMatch(String idPlayer1, String idPlayer2, int date, String tournament, String score) {
 
     }
 
-    public String getPlayer1Id() {
+    public TennisMatch(String idPlayer1, String idPlayer2, int day, int month, int year, String tournament, String score) {
 
+    }
+
+    public String getPlayer1Id() {
+        return "";
     }
 
     public String getPlayer2Id() {
-
+        return "";
     }
 
     public int getDateYear() {
-
+        return 0;
     }
 
     public int getDateMonth() {
-
+        return 0;
     }
 
     public int getDateDay() {
-
+        return 0;
     }
 
     public String getTournament() {
-
+        return "";
     }
 
     public String getScore() {
-
+        return "";
     }
 
     public int getWinner() {
-
+        return 0;
     }
 
     public int compareTo(TennisMatch tm) {

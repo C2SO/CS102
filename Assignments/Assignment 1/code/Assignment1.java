@@ -53,10 +53,12 @@ public class Assignment1 {
                 // Create scanner to scan console for match info
                 String idPlayer1 = user.next();
                 String idPlayer2 = user.next();
-                Integer date = user.nextInt();
-                String tournament = user.next();
-                String score = user.next();
-                tdb.insertMatch(idPlayer1, idPlayer2, date, tournament, score);
+                Integer dayInput = user.nextInt();
+                Integer monthInput = user.nextInt();
+                Integer yearInput = user.nextInt();
+                String tournamentInput = user.next();
+                String scoreInput = user.next();
+                tdb.insertMatch(idPlayer1, idPlayer2, dayInput, monthInput, yearInput, tournamentInput, scoreInput);
                 break;
             case 0:
                 systemRunning = false;
@@ -66,6 +68,6 @@ public class Assignment1 {
                 break;
             }
         }
-
+        user.close();
     }
 }

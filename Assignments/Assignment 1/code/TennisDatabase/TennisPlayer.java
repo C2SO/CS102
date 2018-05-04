@@ -6,24 +6,28 @@ public class TennisPlayer implements TennisPlayerInterface {
         
     }
 
-    public String getId() {
+    public int compareTo(TennisPlayer p) {
+        return 0;
+    }
 
+    public String getId() {
+        return null;
     }
 
     public String getFirstName() {
-
+        return null;
     }
 
     public String getLastName() {
-
+        return null;
     }
 
     public int getBirthYear() {
-
+        return 0;
     }
 
     public String getCountry() {
-
+        return null;
     }
 
     public void print() {
@@ -31,6 +35,6 @@ public class TennisPlayer implements TennisPlayerInterface {
     }
 
     public String toString() {
-
+        return null;
     }
 }

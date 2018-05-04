@@ -1,17 +1,29 @@
 package TennisDatabase;
 
 public class TennisPlayerNode implements TennisPlayerNodeInterface {
+    TennisPlayer item;
+    TennisPlayerNode next;
+
+    public TennisPlayerNode(TennisPlayer p) {
+        item = p;
+        next = null;
+    }
+
+    public TennisPlayerNode(TennisPlayer p, TennisPlayerNode n) {
+        item = p;
+        next = n;
+    }
 
     public TennisPlayer getPlayer() {
-        return TennisPlayer;
+        return item;
     }
 
     public TennisPlayerNode getPrev() {
-        return TennisPlayerNode;
+        return next;
     }
 
     public TennisPlayerNode getNext() {
-        return TennisPlayerNode;
+        return next;
     }
 
     public void setPrev(TennisPlayerNode p) {

@@ -50,8 +50,8 @@ public class TennisDatabase implements TennisDatabaseInterface {
         tpc.insertPlayer(p);
     };
 
-    public void insertMatch(String idPlayer1, String idPlayer2, int date, String tournament, String score) {
-        TennisMatch m = new TennisMatch(idPlayer1, idPlayer2, date, tournament, score);
+    public void insertMatch(String idPlayer1, String idPlayer2, int day, int month, int year, String tournament, String score) {
+        TennisMatch m = new TennisMatch(idPlayer1, idPlayer2, day, month, year, tournament, score);
         tmc.insertMatch(m);
     };
 }
