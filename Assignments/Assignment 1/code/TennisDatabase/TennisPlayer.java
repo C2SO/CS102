@@ -8,8 +8,12 @@ public class TennisPlayer implements TennisPlayerInterface {
     public int year;
     public String country;
 
-    public TennisPlayer(String id, String firstName, String lastName, int year, String country) {
-
+    public TennisPlayer(String idIn, String firstNameIn, String lastNameIn, int yearIn, String countryIn) {
+        this.id = idIn;
+        this.firstName = firstNameIn;
+        this.lastName = lastNameIn;
+        this.year = yearIn;
+        this.country = countryIn;
     }
 
     public int compareTo(TennisPlayer p) {
