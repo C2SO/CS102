@@ -8,14 +8,15 @@ import TennisDatabase.TennisDatabaseRuntimeException;
 public class Assignment1 {
 
     private static File inputFile; // Defines the input file
+    static TennisDatabase tdb;
 
     public static void main(String[] args) throws FileNotFoundException {
         Scanner read = new Scanner(System.in);
         System.out.println("What file would you like to imput from?\nExample: inputFile.txt");
         String fileInput = read.next();
         inputFile = new File(fileInput); // Set Input file
-        TennisDatabase tdb = new TennisDatabase();
         // Check if there are no command line arguments
+        tdb = new TennisDatabase();
         // Load Data from file
         tdb.loadFile(inputFile);
         // Check command and activate the relative tennis database opertations
@@ -26,7 +27,6 @@ public class Assignment1 {
         boolean systemRunning = true;
         int option;
         Scanner user = new Scanner(System.in);
-        TennisDatabase tdb = new TennisDatabase();
         while (systemRunning) {
             System.out.println(
                     "Select an option my entering the option's number:\n1. Print Players\n2. Print Matches\n3. Print All Matches For A Player\n4. Add a Player\n5. Add a Match\n\n0. Exit");

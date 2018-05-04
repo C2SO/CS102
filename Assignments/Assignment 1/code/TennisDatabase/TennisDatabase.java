@@ -1,17 +1,20 @@
 package TennisDatabase;
 
 import java.io.*;
-import java.util.Scanner;
+import java.util.*;
 
 public class TennisDatabase implements TennisDatabaseInterface {
-    private TennisPlayersContainer tpc = new TennisPlayersContainer();
-    private TennisMatchesContainer tmc = new TennisMatchesContainer();
+
+    private TennisPlayersContainer tpc;
+    private TennisMatchesContainer tmc;
 
     public TennisDatabase() {
+        tpc = new TennisPlayersContainer();
+        tmc = new TennisMatchesContainer();
     }
 
     public void loadFile(File inputFile) throws FileNotFoundException {
-        String line; // Defining a ling in the input file
+        String line; // Defining a line in the input file
         String[] data; // An array of the line when parsed
         Scanner read = new Scanner(inputFile);
         while (read.hasNext()) { // If there is a line that hasn't been scanned
