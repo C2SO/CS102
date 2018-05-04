@@ -18,7 +18,6 @@ public class Assignment1 {
         // Check if there are no command line arguments
         // Load Data from file
         tdb.loadFile(inputFile);
-        read.close();
         // Check command and activate the relative tennis database opertations
         runProgram();
     }
@@ -72,6 +71,5 @@ public class Assignment1 {
                 break;
             }
         }
-        user.close();
     }
 }

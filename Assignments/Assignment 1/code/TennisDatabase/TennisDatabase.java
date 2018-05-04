@@ -30,7 +30,6 @@ public class TennisDatabase implements TennisDatabaseInterface {
                 break;
             }
         }
-        read.close();
     }
 
     public void printAllPlayers() {
