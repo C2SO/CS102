@@ -3,7 +3,9 @@ package TennisDatabase;
 public class TennisPlayerNode implements TennisPlayerNodeInterface {
     TennisPlayer item;
     TennisPlayerNode next;
-
+    TennisPlayerNode prev;
+    TennisMatch[] playerMatches = new TennisMatch[1];
+    
     public TennisPlayerNode(TennisPlayer p) {
         item = p;
         next = null;
@@ -15,7 +17,7 @@ public class TennisPlayerNode implements TennisPlayerNodeInterface {
     }
 
     public TennisPlayer getPlayer() {
-        return item;
+        return this.item;
     }
 
     public TennisPlayerNode getPrev() {

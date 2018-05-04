@@ -11,9 +11,10 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
     }
 
     public void insertPlayer(TennisPlayer p) throws TennisDatabaseRuntimeException {
-        TennisPlayer playerWithSameId = getPlayer(p.getId());
-        if (playerWithSameId != null) {
-            throw new TennisDatabaseRuntimeException("");
+        TennisPlayer playerSame = getPlayer(p.getId());
+        if (playerSame != null) {
+            throw new TennisDatabaseRuntimeException(
+                    "Ooohhhhhhhhhhhhhh ya almost got me there. Give me a player that isn't in the database.");
         }
         TennisPlayerNode newNode = new TennisPlayerNode(p);
         if (numPlayers == 0) {
@@ -47,14 +48,26 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
         }
     }
 
-    public TennisPlayer getPlayer(String id) {
+    public TennisPlayerNode getTennisPlayerNode(String id) {
         TennisPlayerNode currNode = head;
         for (int i = 0; (i < numPlayers) && (currNode.getPlayer().getId().compareTo(id) <= 0); i++) {
             if (currNode.getPlayer().getId().equals(id)) {
-                return currNode.getPlayer();
+                return currNode;
             } else {
                 currNode = currNode.getNext();
             }
+        }
+        return null;
+    }
+
+    public TennisPlayer getPlayer(String id) {
+        TennisPlayerNode currNode = head;
+        for (int i = 0; (i < numPlayers) && (currNode.getPlayer().getId().compareTo(id) <= 0); i++) {
+           if (currNode.getPlayer().getId().equals(id)) {
+              return currNode.getPlayer();
+           } else {
+              currNode = currNode.getNext();
+           }
         }
         return null;
     }
