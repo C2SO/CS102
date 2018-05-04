@@ -10,11 +10,15 @@ public class Assignment1 {
     private static File inputFile; // Defines the input file
 
     public static void main(String[] args) throws FileNotFoundException {
-        inputFile = new File("inputFile.txt"); // Set Input file
+        Scanner read = new Scanner(System.in);
+        System.out.println("What file would you like to imput from?\nExample: inputFile.txt");
+        String fileInput = read.next();
+        inputFile = new File(fileInput); // Set Input file
         TennisDatabase tdb = new TennisDatabase();
         // Check if there are no command line arguments
         // Load Data from file
         tdb.loadFile(inputFile);
+        read.close();
         // Check command and activate the relative tennis database opertations
         runProgram();
     }

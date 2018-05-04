@@ -2,8 +2,14 @@ package TennisDatabase;
 
 public class TennisPlayer implements TennisPlayerInterface {
 
+    public String id;
+    public String firstName;
+    public String lastName;
+    public int year;
+    public String country;
+
     public TennisPlayer(String id, String firstName, String lastName, int year, String country) {
-        
+
     }
 
     public int compareTo(TennisPlayer p) {
@@ -11,7 +17,7 @@ public class TennisPlayer implements TennisPlayerInterface {
     }
 
     public String getId() {
-        return null;
+        return this.id;
     }
 
     public String getFirstName() {
@@ -31,7 +37,7 @@ public class TennisPlayer implements TennisPlayerInterface {
     }
 
     public void print() {
-
+        System.out.println(toString());
     }
 
     public String toString() {

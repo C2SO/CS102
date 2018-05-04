@@ -22,6 +22,11 @@ public class TennisPlayerNode implements TennisPlayerNodeInterface {
         return this.item;
     }
 
+    public String getId() {
+        String id = this.item.getId();
+        return id;
+    }
+
     public TennisPlayerNode getPrev() {
         return this.prev;
     }
@@ -67,6 +72,15 @@ public class TennisPlayerNode implements TennisPlayerNodeInterface {
                 }
             }
             playerMatches = tennisMatchArray;
+        }
+    }
+
+    public int compareTo(String input) {
+        String tempInput = this.item.getId();
+        if (tempInput == input) {
+            return 1;
+        } else {
+            return -1;
         }
     }
 

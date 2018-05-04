@@ -1,5 +1,9 @@
 package TennisDatabase;
 
+import java.lang.NullPointerException;
+
+import java.lang.NullPointerException;
+
 public class TennisPlayersContainer implements TennisPlayersContainerInterface {
 
     TennisPlayerNode head;
@@ -11,10 +15,10 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
     }
 
     public void insertPlayer(TennisPlayer p) throws TennisDatabaseRuntimeException {
-        TennisPlayer playerSame = getPlayer(p.getId());
+        TennisPlayer playerSame = checkPlayer(p.getId());
         if (playerSame != null) {
             throw new TennisDatabaseRuntimeException(
-                    "Ooohhhhhhhhhhhhhh ya almost got me there. Give me a player that isn't in the database.");
+                    "Id: " + playerSame + " is in use.");
         }
         TennisPlayerNode newNode = new TennisPlayerNode(p);
         if (numPlayers == 0) {
@@ -60,7 +64,10 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
         return null;
     }
 
-    public TennisPlayer getPlayer(String id) {
+    public TennisPlayer checkPlayer(String id) throws NullPointerException {
+        if (id == null) {
+            throw new NullPointerException("Id = null");
+        }
         TennisPlayerNode currNode = head;
         for (int i = 0; (i < numPlayers) && (currNode.getPlayer().getId().compareTo(id) <= 0); i++) {
            if (currNode.getPlayer().getId().equals(id)) {
