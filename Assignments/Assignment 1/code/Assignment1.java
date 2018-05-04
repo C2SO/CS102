@@ -39,7 +39,7 @@ public class Assignment1 {
                 tdb.printAllMatches();
                 break;
             case 3:
-                // Create scanner to scan console for id
+                System.out.println("Enter a Player ID");
                 String playerId = user.next();
                 tdb.printMatchesOfPlayer(playerId);
                 break;

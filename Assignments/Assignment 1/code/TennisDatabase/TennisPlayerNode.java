@@ -85,5 +85,8 @@ public class TennisPlayerNode implements TennisPlayerNodeInterface {
     }
 
     public void printMatches() {
+        for (int index = 0; index < playerMatches.length; index++) {
+            System.out.println(playerMatches[index].toString());
+        }
     }
 }
