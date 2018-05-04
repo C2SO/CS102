@@ -82,5 +82,11 @@ public class TennisMatch implements TennisMatchInterface {
     }
 
     public void print() {
+        System.out.println(
+                year + "/" + month + "/" + day + ", " + idPlayer1 + "-" + idPlayer2 + ", " + tournament + "," + score);
+    }
+
+    public String toString() {
+        return (year + "/" + month + "/" + day + ", " + idPlayer1 + "-" + idPlayer2 + ", " + tournament + "," + score);
     }
 }

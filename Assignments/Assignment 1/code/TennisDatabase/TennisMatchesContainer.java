@@ -15,7 +15,28 @@ public class TennisMatchesContainer implements TennisMatchesContainerInterface {
     }
 
     public void insertMatch(TennisMatch m) {
-        
+        if (sizeLogical == sizePhysical) {
+            TennisMatch[] tmn = new TennisMatch[tma.length + 1];
+            for (int index = 0; index < tma.length; index++) {
+                tmn[index] = tma[index];
+            }
+            tma = tmn;
+            sizePhysical++;
+        }
+        int index;
+        for (index = 0; (index < sizeLogical) && (m.compareTo(tma[index]) < 0); index++) {
+        }
+        int insert = index;
+        if (insert == sizeLogical) {
+            tma[sizeLogical] = m;
+            sizeLogical++;
+        } else {
+            for (int i = sizeLogical - 1; i >= insert; i--) {
+                tma[i + 1] = tma[i];
+            }
+            tma[insert] = m;
+            sizeLogical++;
+        }
     }
 
     public void printAllMatches() throws TennisDatabaseRuntimeException {
