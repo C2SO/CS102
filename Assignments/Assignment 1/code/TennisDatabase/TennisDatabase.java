@@ -1,17 +1,20 @@
 package TennisDatabase;
 
 import java.io.*;
-import java.util.Scanner;
+import java.util.*;
 
 public class TennisDatabase implements TennisDatabaseInterface {
-    private TennisPlayersContainer tpc = new TennisPlayersContainer();
-    private TennisMatchesContainer tmc = new TennisMatchesContainer();
+
+    private TennisPlayersContainer tpc;
+    private TennisMatchesContainer tmc;
 
     public TennisDatabase() {
+        tpc = new TennisPlayersContainer();
+        tmc = new TennisMatchesContainer();
     }
 
     public void loadFile(File inputFile) throws FileNotFoundException {
-        String line; // Defining a ling in the input file
+        String line; // Defining a line in the input file
         String[] data; // An array of the line when parsed
         Scanner read = new Scanner(inputFile);
         while (read.hasNext()) { // If there is a line that hasn't been scanned
@@ -25,8 +28,9 @@ public class TennisDatabase implements TennisDatabaseInterface {
                 tpc.insertPlayer(p); // Add Player
                 break;
             case 'M':
-                TennisMatch m = new TennisMatch(data[1], data[2], Integer.parseInt(data[3]), data[4], data[5]);
+                TennisMatch m = new TennisMatch(data[1], data[2], Integer.parseInt(data[3].substring(0,4)), Integer.parseInt(data[3].substring(4,6)), Integer.parseInt(data[3].substring(6,8)), data[4], data[5]);
                 tmc.insertMatch(m); // Add Match
+                tpc.insertMatch(m);
                 break;
             }
         }

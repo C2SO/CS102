@@ -45,6 +45,7 @@ public class TennisPlayer implements TennisPlayerInterface {
     }
 
     public String toString() {
-        return null;
+        String result = this.id + ": " + this.firstName + this.lastName + ", " + this.year + ", " + this.country;
+        return result;
     }
 }

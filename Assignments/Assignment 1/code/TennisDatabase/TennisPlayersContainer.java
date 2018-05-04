@@ -1,9 +1,5 @@
 package TennisDatabase;
 
-import java.lang.NullPointerException;
-
-import java.lang.NullPointerException;
-
 public class TennisPlayersContainer implements TennisPlayersContainerInterface {
 
     TennisPlayerNode head;
@@ -14,43 +10,35 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
         numPlayers = 0;
     }
 
-    public void insertPlayer(TennisPlayer p) throws TennisDatabaseRuntimeException {
-        TennisPlayer playerSame = checkPlayer(p.getId());
-        if (playerSame != null) {
-            throw new TennisDatabaseRuntimeException(
-                    "Id: " + playerSame + " is in use.");
-        }
-        TennisPlayerNode newNode = new TennisPlayerNode(p);
-        if (numPlayers == 0) {
-            head = newNode;
-            newNode.setPrev(newNode);
-            newNode.setNext(newNode);
-            numPlayers++;
-        } else {
-            TennisPlayerNode prevNode = head.getPrev();
-            TennisPlayerNode currNode = head;
-            int indexCurrNode = 0;
-            while ((indexCurrNode < numPlayers) && (currNode != null) && (p.compareTo(currNode.getPlayer()) > 0)) {
-                prevNode = currNode;
-                currNode = currNode.getNext();
-                indexCurrNode++;
-            }
-            if (indexCurrNode == 0) {
-                head = newNode;
-                newNode.setPrev(newNode);
-                newNode.setNext(newNode);
-                prevNode.setNext(newNode);
-                currNode.setPrev(newNode);
-                numPlayers++;
-            } else {
-                newNode.setPrev(prevNode);
-                newNode.setNext(currNode);
-                prevNode.setNext(newNode);
-                currNode.setPrev(newNode);
-                numPlayers++;
-            }
-        }
-    }
+    public void insertPlayer(TennisPlayer p) throws TennisDatabaseRuntimeException 
+   {
+      TennisPlayerNode newNode = new TennisPlayerNode(p);
+      if (numPlayers == 0) 
+      {
+         head = newNode;
+         head.setPrev(head);
+         head.setNext(head);
+         numPlayers++;
+      } 
+      else 
+      {
+         TennisPlayerNode currNode = head;
+         int indexCurrNode = 0;
+         while ((indexCurrNode < numPlayers) && (p.compareTo(currNode.getPlayer()) > 0)) 
+         {
+            currNode = currNode.getNext();
+            indexCurrNode++;
+         }
+         //if ((p.compareTo(currNode.getPlayer()) != 0) && (p.compareTo(currNode.getNext().getPlayer()) != 0))
+         //{
+         newNode.setNext(currNode.getNext());
+         newNode.setPrev(currNode);
+         currNode.setNext(newNode);
+         newNode.getNext().setPrev(newNode);
+         numPlayers++;
+         //}
+      }
+   }
 
     public TennisPlayerNode getTennisPlayerNode(String id) {
         TennisPlayerNode currNode = head;
@@ -64,7 +52,7 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
         return null;
     }
 
-    public TennisPlayer checkPlayer(String id) throws NullPointerException {
+    public TennisPlayer checkPlayer(String id) {
         if (id == null) {
             throw new NullPointerException("Id = null");
         }
@@ -83,6 +71,11 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
     }
 
     public void printAllPlayers() throws TennisDatabaseRuntimeException {
+        TennisPlayerNode currNode = head;
+        for (int i = 0; i < numPlayers; i++) {
+           currNode.getPlayer().print();
+           currNode = currNode.getNext();
+        }
     }
 
     public void printMatchesOfPlayer(String playerId) throws TennisDatabaseRuntimeException {

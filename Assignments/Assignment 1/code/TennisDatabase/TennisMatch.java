@@ -2,25 +2,13 @@ package TennisDatabase;
 
 public class TennisMatch implements TennisMatchInterface {
 
-    int idPlayer1;
-    int idPlayer2;
-    int date;
+    String idPlayer1;
+    String idPlayer2;
     int day;
     int month;
     int year;
     String tournament;
     String score;
-
-    public TennisMatch(String idPlayer1In, String idPlayer2In, int dateIn, String tournamentIn, String scoreIn) {
-        this.idPlayer1 = idPlayer1In;
-        this.idPlayer2 = idPlayer2In;
-        // Date parse
-        // this.day = 
-        // this.month = 
-        // this.year = 
-        this.tournament = tournamentIn;
-        this.score = scoreIn;
-    }
 
     public TennisMatch(String idPlayer1In, String idPlayer2In, int dayIn, int monthIn, int yearIn, String tournamentIn, String scoreIn) {
         this.idPlayer1 = idPlayer1In;
@@ -33,31 +21,38 @@ public class TennisMatch implements TennisMatchInterface {
     }
 
     public String getPlayer1Id() {
-        return "";
+        String id = this.idPlayer1;
+        return id;
     }
 
     public String getPlayer2Id() {
-        return "";
+        String id = this.idPlayer2;
+        return id;
     }
 
     public int getDateYear() {
-        return 0;
+        int yearGet = this.year;
+        return yearGet;
     }
 
     public int getDateMonth() {
-        return 0;
+        int monthGet = this.month;
+        return monthGet;
     }
 
     public int getDateDay() {
-        return 0;
+        int dayGet = this.day;
+        return dayGet;
     }
 
     public String getTournament() {
-        return "";
+        String tournamentGet = this.tournament;
+        return tournamentGet;
     }
 
     public String getScore() {
-        return "";
+        String scoreGet = this.score;
+        return scoreGet;
     }
 
     public int getWinner() {
