@@ -11,12 +11,25 @@ public class TennisMatch implements TennisMatchInterface {
     String tournament;
     String score;
 
-    public TennisMatch(String idPlayer1, String idPlayer2, int date, String tournament, String score) {
-
+    public TennisMatch(String idPlayer1In, String idPlayer2In, int dateIn, String tournamentIn, String scoreIn) {
+        this.idPlayer1 = idPlayer1In;
+        this.idPlayer2 = idPlayer2In;
+        // Date parse
+        // this.day = 
+        // this.month = 
+        // this.year = 
+        this.tournament = tournamentIn;
+        this.score = scoreIn;
     }
 
-    public TennisMatch(String idPlayer1, String idPlayer2, int day, int month, int year, String tournament, String score) {
-
+    public TennisMatch(String idPlayer1In, String idPlayer2In, int dayIn, int monthIn, int yearIn, String tournamentIn, String scoreIn) {
+        this.idPlayer1 = idPlayer1In;
+        this.idPlayer2 = idPlayer2In;
+        this.day = dayIn;
+        this.month = monthIn;
+        this.year = yearIn;
+        this.tournament = tournamentIn;
+        this.score = scoreIn;
     }
 
     public String getPlayer1Id() {
