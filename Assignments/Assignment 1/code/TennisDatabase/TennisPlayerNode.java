@@ -48,30 +48,22 @@ public class TennisPlayerNode implements TennisPlayerNodeInterface {
             playerMatches[0] = m;
         else {
             for (int index = 0; index < playerMatches.length; index++) {
-                if (m.compareTo(playerMatches[index]) == 0)
+                if (m.compareTo(playerMatches[index]) == 0) {
                     throw new TennisDatabaseRuntimeException("Duplicate Match");
+                }
             }
-            TennisMatch[] tennisMatchArray = new TennisMatch[playerMatches.length + 1];
+            TennisMatch[] tmn = new TennisMatch[playerMatches.length + 1];
             int temp = 0;
-            if (m.compareTo(playerMatches[0]) >= 0) {
-                tennisMatchArray[0] = m;
-                for (int index = 0; index < playerMatches.length; index++) {
-                    tennisMatchArray[index + 1] = playerMatches[index];
-                }
-            } else {
-                for (int index3 = 0; (m.compareTo(playerMatches[index3]) == -1)
-                        && index3 < playerMatches.length; index3++) {
-                    // make new and old arrays match up untill the new item is the newest
-                    tennisMatchArray[index3] = playerMatches[index3];
-                    temp = index3;
-                }
-                tennisMatchArray[temp] = m;
-                for (int index3 = temp; index3 < playerMatches.length; index3++) {
-                    // Finish filling in new array from old after 'm'
-                    tennisMatchArray[index3] = playerMatches[index3];
-                }
+            for (int index = 0; (m.compareTo(playerMatches[index]) == -1)
+                    && index < playerMatches.length; index++) {
+                tmn[index] = playerMatches[index];
+                temp = index;
             }
-            playerMatches = tennisMatchArray;
+            tmn[temp] = m;
+            for (int index = temp; index < playerMatches.length; index++) {
+                tmn[index] = playerMatches[index];
+            }
+            playerMatches = tmn;
         }
     }
 

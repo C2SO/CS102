@@ -44,24 +44,34 @@ public class Assignment1 {
                 tdb.printMatchesOfPlayer(playerId);
                 break;
             case 4:
-                // Create scanner to scan console for player info
+                System.out.println("Enter the Player ID");
                 String id = user.next();
+                System.out.println("Enter the Player's First Name");
                 String firstName = user.next();
+                System.out.println("Enter the Player's Last Name");
                 String lastName = user.next();
+                System.out.println("Enter the Player's Birth Year");
                 Integer year = user.nextInt();
+                System.out.println("Enter the Player's Country");
                 String country = user.next();
                 tdb.insertPlayer(id, firstName, lastName, year, country);
                 break;
             case 5:
-                // Create scanner to scan console for match info
+                System.out.println("Enter the First Player's ID");
                 String idPlayer1 = user.next();
+                System.out.println("Enter the Second Player's ID");
                 String idPlayer2 = user.next();
+                System.out.println("Enter the Day of the Match");
                 Integer dayInput = user.nextInt();
+                System.out.println("Enter the Month of the Match");
                 Integer monthInput = user.nextInt();
+                System.out.println("Enter the Year of the Match");
                 Integer yearInput = user.nextInt();
+                System.out.println("Enter the Name of the Tournament");
                 String tournamentInput = user.next();
+                System.out.println("Enter the Score\nExample: 6-4,5-7,6-4,6-4");
                 String scoreInput = user.next();
-                tdb.insertMatch(idPlayer1, idPlayer2, dayInput, monthInput, yearInput, tournamentInput, scoreInput);
+                tdb.insertMatch(idPlayer1, idPlayer2, yearInput, monthInput, dayInput, tournamentInput, scoreInput);
                 break;
             case 0:
                 systemRunning = false;

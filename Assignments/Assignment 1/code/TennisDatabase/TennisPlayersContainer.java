@@ -93,7 +93,7 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
     public void printMatchesOfPlayer(String playerId) throws TennisDatabaseRuntimeException {
         TennisPlayerNode currNode = head;
         boolean print = false;
-        for (int i = 0; i <= numPlayers + 1; i++) {
+        for (int i = 0; i < numPlayers; i++) {
             String testId = currNode.getPlayer().getId();
             if (testId.equals(playerId)) {
                 currNode.printMatches();
