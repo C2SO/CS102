@@ -1,6 +1,7 @@
 package TennisDatabase;
 
 import TennisDatabase.TennisDatabaseRuntimeException;
+import jdk.nashorn.internal.runtime.regexp.joni.MatcherFactory;
 
 public class TennisMatchesContainer implements TennisMatchesContainerInterface {
 
@@ -47,5 +48,44 @@ public class TennisMatchesContainer implements TennisMatchesContainerInterface {
                 tma[i].print();
             }
         }
+    }
+
+    public int[] getPlayerScore(String id) throws TennisDatabaseRuntimeException {
+        int[] score = new int[2];
+        int wins = 0;
+        int losses = 0;
+        if (tma.length == 0) {
+            throw new TennisDatabaseRuntimeException("No Tennis Matches Available");
+        } else {
+            int matchIndex = 0;
+            for (int i = 0; i < sizeLogical; i++) {
+                if (tma[i].getPlayer1Id().equals(id)) {
+                    matchIndex++;
+                } else if (tma[i].getPlayer2Id().equals(id)) {
+                    matchIndex++;
+                }
+                TennisMatch[] playerMatches = new TennisMatch[matchIndex];
+                matchIndex = 0;
+                for (int index = 0; index < sizeLogical; index++) {
+                    if (tma[i].getPlayer1Id().equals(id)) {
+                        playerMatches[matchIndex] = tma[i];
+                        matchIndex++;
+                    } else if (tma[i].getPlayer2Id().equals(id)) {
+                        playerMatches[matchIndex] = tma[i];
+                        matchIndex++;
+                    }
+                }
+                for ( int index = 0; index < playerMatches.length; index++) {
+                    if (playerMatches[i].getWinner() == 1) {
+                        wins++;
+                    } else if (playerMatches[i].getWinner() == -1) {
+                        losses++;
+                    }
+                }
+            }
+        }
+        score[0] = wins;
+        score[1] = losses;
+        return score;
     }
 }

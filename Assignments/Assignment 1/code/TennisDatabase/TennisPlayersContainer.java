@@ -84,8 +84,9 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
 
     public void printAllPlayers() throws TennisDatabaseRuntimeException {
         TennisPlayerNode currNode = head;
+        TennisMatchesContainer tmc = new TennisMatchesContainer(); 
         for (int i = 0; i < numPlayers; i++) {
-            currNode.getPlayer().print();
+            System.out.println(currNode.getPlayer() + ", " + tmc.getPlayerScore(currNode.getPlayer().getId())[0] + " - " + tmc.getPlayerScore(currNode.getPlayer().getId())[1]);
             currNode = currNode.getNext();
         }
     }

@@ -10,7 +10,8 @@ public class TennisMatch implements TennisMatchInterface {
     String tournament;
     String score;
 
-    public TennisMatch(String idPlayer1In, String idPlayer2In, int dayIn, int monthIn, int yearIn, String tournamentIn, String scoreIn) {
+    public TennisMatch(String idPlayer1In, String idPlayer2In, int dayIn, int monthIn, int yearIn, String tournamentIn,
+            String scoreIn) {
         this.idPlayer1 = idPlayer1In;
         this.idPlayer2 = idPlayer2In;
         this.day = dayIn;
@@ -56,7 +57,17 @@ public class TennisMatch implements TennisMatchInterface {
     }
 
     public int getWinner() {
-        return 0;
+        String score = this.getScore();
+        return recGetWinner(score);
+    }
+
+    public int recGetWinner(String score) {
+        if (score.length() == 3) {
+            return Character.getNumericValue(score.charAt(0)) - Character.getNumericValue(score.charAt(2));
+        } else {
+            return (Character.getNumericValue(score.charAt(0)) - Character.getNumericValue(score.charAt(2)))
+                    + recGetWinner(score.substring(4));
+        }
     }
 
     public int compareTo(TennisMatch tm) {
