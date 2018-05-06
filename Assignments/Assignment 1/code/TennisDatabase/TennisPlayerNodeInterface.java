@@ -1,19 +1,24 @@
+/*
+Nicholas Rahbany
+CS102
+*/
+
 package TennisDatabase;
 
 // Interface (package-private) providing the specifications for the TennisPlayerNode class.
 interface TennisPlayerNodeInterface {
 
     // Accessors (getters).
-    public TennisPlayer getPlayer();
+    public TennisPlayer getPlayer(); // Gets player
 
-    public TennisPlayerNode getPrev();
+    public TennisPlayerNode getPrev(); // Gets previous node
 
-    public TennisPlayerNode getNext();
+    public TennisPlayerNode getNext(); // Gets next node
 
     // Modifiers (setters).
-    public void setPrev(TennisPlayerNode p);
+    public void setPrev(TennisPlayerNode p); // Sets previous node
 
-    public void setNext(TennisPlayerNode n);
+    public void setNext(TennisPlayerNode n); // Sets next node
 
     // Desc.: Insert a TennisMatch object (reference) into this node.
     // Input: A TennisMatch object (reference).
