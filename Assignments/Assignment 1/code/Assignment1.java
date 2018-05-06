@@ -24,26 +24,26 @@ public class Assignment1 {
     }
 
     public static void runProgram() {
-        boolean systemRunning = true;
-        int option;
-        Scanner user = new Scanner(System.in);
-        while (systemRunning) {
+        boolean systemRunning = true; // Tells code if program is running
+        int option; // User input option
+        Scanner user = new Scanner(System.in); // Scans console for user input
+        while (systemRunning) { // While system is running, ask for the user to select an option
             System.out.println(
                     "Select an option my entering the option's number:\n1. Print Players\n2. Print Matches\n3. Print All Matches For A Player\n4. Add a Player\n5. Add a Match\n\n0. Exit");
-            option = user.nextInt();
+            option = user.nextInt(); // Takes in user input
             switch (option) {
             case 1:
-                tdb.printAllPlayers();
+                tdb.printAllPlayers(); // Print All Players
                 break;
             case 2:
-                tdb.printAllMatches();
+                tdb.printAllMatches(); // Print All Matches
                 break;
             case 3:
                 System.out.println("Enter a Player ID");
                 String playerId = user.next();
-                tdb.printMatchesOfPlayer(playerId);
+                tdb.printMatchesOfPlayer(playerId); // Print Matches of Player Inputed
                 break;
-            case 4:
+            case 4: // Asks user to fill in all data to add a player
                 System.out.println("Enter the Player ID");
                 String id = user.next();
                 System.out.println("Enter the Player's First Name");
@@ -54,9 +54,9 @@ public class Assignment1 {
                 Integer year = user.nextInt();
                 System.out.println("Enter the Player's Country");
                 String country = user.next();
-                tdb.insertPlayer(id, firstName, lastName, year, country);
+                tdb.insertPlayer(id, firstName, lastName, year, country); // Adds player
                 break;
-            case 5:
+            case 5: // Asks user to fill in all data to add a match
                 System.out.println("Enter the First Player's ID");
                 String idPlayer1 = user.next();
                 System.out.println("Enter the Second Player's ID");
@@ -71,13 +71,13 @@ public class Assignment1 {
                 String tournamentInput = user.next();
                 System.out.println("Enter the Score\nExample: 6-4,5-7,6-4,6-4");
                 String scoreInput = user.next();
-                tdb.insertMatch(idPlayer1, idPlayer2, yearInput, monthInput, dayInput, tournamentInput, scoreInput);
+                tdb.insertMatch(idPlayer1, idPlayer2, yearInput, monthInput, dayInput, tournamentInput, scoreInput); // Adds match
                 break;
             case 0:
-                systemRunning = false;
+                systemRunning = false; // Stops the program
                 break;
             default:
-                System.out.println("Please choose an option that was listed...");
+                System.out.println("Please choose an option that was listed..."); // If user selected an option not shown
                 break;
             }
         }
