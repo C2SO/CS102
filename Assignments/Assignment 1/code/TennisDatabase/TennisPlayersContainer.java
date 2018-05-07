@@ -33,26 +33,14 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
                 currNode = currNode.getNext();
                 i++;
             }
-            if (p.compareTo(currNode.getPlayer()) < 0) {//Sets Previous
-                newNode.setNext(currNode);
-                newNode.setPrev(currNode.getPrev());
-                currNode.getPrev().setNext(newNode);
-                currNode.setPrev(newNode);
-                if (p.compareTo(currNode.getPlayer()) < 0 && i == 0){
-                    this.head = newNode;
-                }
-                this.numPlayers++;
+            if (i == 0){
+                this.head = newNode;
             }
-            else if (p.compareTo(currNode.getPlayer()) > 0) {//Sets Next
-                newNode.setNext(currNode.getNext());
-                newNode.setPrev(currNode);
-                currNode.setNext(newNode);
-                newNode.getNext().setPrev(newNode);
-                this.numPlayers++;
-            }
-            else if (p.compareTo(currNode.getPlayer()) == 0){
-                throw new TennisDatabaseRuntimeException("The player cannot be inserted. Duplicate player");
-            }
+            newNode.setNext(currNode);
+            newNode.setPrev(currNode.getPrev());
+            currNode.getPrev().setNext(newNode);
+            currNode.setPrev(newNode);
+            this.numPlayers++;
         }
     }
 
