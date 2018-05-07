@@ -25,7 +25,7 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
         } else {
            TennisPlayerNode currNode = head;
            int indexCurrNode = 0;
-           while ((indexCurrNode < numPlayers) && (p.compareTo(currNode.getPlayer()) > 0)) {
+           while ((indexCurrNode < numPlayers) && (p.compareTo(currNode.getPlayer()) < 0)) {
               currNode = currNode.getNext();
               indexCurrNode++;
            }
@@ -86,12 +86,14 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
     }
 
     public void printAllPlayers() throws TennisDatabaseRuntimeException {
+        System.out.println();
         TennisPlayerNode currNode = head;
         TennisMatchesContainer tmc = new TennisMatchesContainer(); 
         for (int i = 0; i < numPlayers; i++) {
             System.out.println(currNode.getPlayer() + ", " + tmc.getPlayerScore(currNode.getPlayer().getId())[0] + " - " + tmc.getPlayerScore(currNode.getPlayer().getId())[1]);
             currNode = currNode.getNext();
         }
+        System.out.println();
     }
 
     public void printMatchesOfPlayer(String playerId) throws TennisDatabaseRuntimeException {

@@ -42,6 +42,10 @@ public class TennisPlayer implements TennisPlayerInterface {
         return null;
     }
 
+    public int compareTo(TennisPlayer tp) {
+        return this.id.compareTo(tp.getId());
+    }
+
     public void print() { // Prints the player
         System.out.println(toString());
     }
