@@ -1,3 +1,8 @@
+/*
+Nicholas Rahbany
+CS102
+*/
+
 package TennisDatabase;
 
 import java.io.*;
@@ -34,6 +39,7 @@ public class TennisDatabase implements TennisDatabaseInterface {
                 break;
             }
         }
+        read.close();
     }
 
     public void printAllPlayers() {

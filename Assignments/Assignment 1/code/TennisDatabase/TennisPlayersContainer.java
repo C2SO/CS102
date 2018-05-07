@@ -1,3 +1,8 @@
+/*
+Nicholas Rahbany
+CS102
+*/
+
 package TennisDatabase;
 
 public class TennisPlayersContainer implements TennisPlayersContainerInterface {
@@ -13,14 +18,14 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
     public void insertPlayer(TennisPlayer p) throws TennisDatabaseRuntimeException {
         TennisPlayerNode newNode = new TennisPlayerNode(p);
         if (numPlayers == 0) {
-            head = newNode;
-            head.setPrev(head);
-            head.setNext(head);
-            numPlayers++;
+           head = newNode;
+           head.setPrev(head);
+           head.setNext(head);
+           numPlayers++;
         } else {
            TennisPlayerNode currNode = head;
            int indexCurrNode = 0;
-           while ((indexCurrNode < numPlayers) && (p.compareTo(currNode.getPlayer()) < 0)) {
+           while ((indexCurrNode < numPlayers) && (p.compareTo(currNode.getPlayer()) > 0)) { // Negative if it preceded, positive if follows
               currNode = currNode.getNext();
               indexCurrNode++;
            }
