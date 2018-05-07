@@ -20,7 +20,7 @@ interface TennisPlayersContainerInterface {
 
     // Desc.: Prints all tennis players to the console.
     // Output: Throws an exception if there are no players in this container.
-    public void printAllPlayers() throws TennisDatabaseRuntimeException;
+    public void printAllPlayers(TennisMatchesContainer tmc) throws TennisDatabaseRuntimeException;
 
     // Desc.: Prints all tennis matches of input tennis player (id).
     // Input: The id of the tennis player.

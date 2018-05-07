@@ -7,35 +7,52 @@ package TennisDatabase;
 
 public class TennisPlayersContainer implements TennisPlayersContainerInterface {
 
-    TennisPlayerNode head;
-    int numPlayers;
+    private int sizeLogical;
+    private int sizePhysical;
+    private TennisPlayerNode head;
+    private int numPlayers;
 
     public void TennisPlayerContainer() {
-        head = null;
-        numPlayers = 0;
+        this.sizePhysical = 2;
+        this.sizeLogical = 0;
+        this.head = null;
+        this.numPlayers = 0;
     }
 
     public void insertPlayer(TennisPlayer p) throws TennisDatabaseRuntimeException {
         TennisPlayerNode newNode = new TennisPlayerNode(p);
-        if (numPlayers == 0) {
-           head = newNode;
-           head.setPrev(head);
-           head.setNext(head);
-           numPlayers++;
+        if (this.numPlayers == 0) {
+            this.head = newNode;
+            this.head.setPrev(this.head);
+            this.head.setNext(this.head);
+            this.numPlayers++;
         } else {
-           TennisPlayerNode currNode = head;
-           int indexCurrNode = 0;
-           while ((indexCurrNode < numPlayers) && (p.compareTo(currNode.getPlayer()) > 0)) { // Negative if it preceded, positive if follows
-              currNode = currNode.getNext();
-              indexCurrNode++;
-           }
-           if (p.compareTo(currNode.getPlayer()) != 0) {
-              newNode.setNext(currNode.getNext());
-              newNode.setPrev(currNode);
-              currNode.setNext(newNode);
-              newNode.getNext().setPrev(newNode);
-              numPlayers++;
-           }
+            TennisPlayerNode currNode = this.head;
+            int i = 0;
+            while ((i < this.numPlayers) && (p.compareTo(currNode.getPlayer()) > 0)) {
+                currNode = currNode.getNext();
+                i++;
+            }
+            if (p.compareTo(currNode.getPlayer()) < 0) {//Sets Previous
+                newNode.setNext(currNode);
+                newNode.setPrev(currNode.getPrev());
+                currNode.getPrev().setNext(newNode);
+                currNode.setPrev(newNode);
+                if (p.compareTo(currNode.getPlayer()) < 0 && i == 0){
+                    this.head = newNode;
+                }
+                this.numPlayers++;
+            }
+            else if (p.compareTo(currNode.getPlayer()) > 0) {//Sets Next
+                newNode.setNext(currNode.getNext());
+                newNode.setPrev(currNode);
+                currNode.setNext(newNode);
+                newNode.getNext().setPrev(newNode);
+                this.numPlayers++;
+            }
+            else if (p.compareTo(currNode.getPlayer()) == 0){
+                throw new TennisDatabaseRuntimeException("The player cannot be inserted. Duplicate player");
+            }
         }
     }
 
@@ -69,28 +86,29 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
     public void insertMatch(TennisMatch m) throws TennisDatabaseRuntimeException {
         String id1 = m.getPlayer1Id();
         String id2 = m.getPlayer2Id();
-        TennisPlayerNode currNode = head;
-        for (int i = 0; i <= numPlayers + 1; i++) {
+        TennisPlayerNode currNode = this.head;
+        for (int i = 0; (i < this.numPlayers) && (currNode.getPlayer().getId().compareTo(id1) <= 0); i++) {
             if (currNode.getPlayer().getId().equals(id1)) {
                 currNode.insertMatch(m);
+            } else {
+                currNode = currNode.getNext();
             }
-            currNode = currNode.getNext();
         }
-        currNode = head;
-        for (int i = 0; i <= numPlayers + 1; i++) {
+        currNode = this.head;
+        for (int i = 0; (i < this.numPlayers) && (currNode.getPlayer().getId().compareTo(id2) <= 0); i++) {
             if (currNode.getPlayer().getId().equals(id2)) {
                 currNode.insertMatch(m);
+            } else {
+                currNode = currNode.getNext();
             }
-            currNode = currNode.getNext();
         }
     }
 
-    public void printAllPlayers() throws TennisDatabaseRuntimeException {
+    public void printAllPlayers(TennisMatchesContainer tmc) throws TennisDatabaseRuntimeException {
         System.out.println();
         TennisPlayerNode currNode = head;
-        TennisMatchesContainer tmc = new TennisMatchesContainer(); 
         for (int i = 0; i < numPlayers; i++) {
-            System.out.println(currNode.getPlayer() + ", " + tmc.getPlayerScore(currNode.getPlayer().getId())[0] + " - " + tmc.getPlayerScore(currNode.getPlayer().getId())[1]);
+            System.out.println(currNode.getPlayer() + ", " + tmc.getPlayerScoreList(currNode.getPlayer().getId()));
             currNode = currNode.getNext();
         }
         System.out.println();

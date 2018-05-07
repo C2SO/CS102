@@ -55,42 +55,114 @@ public class TennisMatchesContainer implements TennisMatchesContainerInterface {
         }
     }
 
-    public int[] getPlayerScore(String id) throws TennisDatabaseRuntimeException {
-        int[] score = new int[2];
-        int wins = 0;
-        int losses = 0;
-        if (tma.length == 0) {
-            throw new TennisDatabaseRuntimeException("No Tennis Matches Available");
-        } else {
-            int matchIndex = 0;
+    public String getPlayerScoreList(String id) throws TennisDatabaseRuntimeException {
+        String winLoss = "";
+        int totalWins = 0;
+        int totalLoss = 0;
+        if (tma.length == 0){
+            throw new TennisDatabaseRuntimeException("There are no tennis matches for that player\n");
+        }
+        else {
+            int matchCount = 0;
+            for (int i = 0; i < sizeLogical; i++){
+                if (tma[i].getPlayer1Id().equals(id))
+                    matchCount++;
+                if (tma[i].getPlayer2Id().equals(id))
+                    matchCount++;
+            }
+            TennisMatch[] pMatches = new TennisMatch[matchCount];//make array of size equal to the number of matches a player has
+            matchCount = 0;//reset match count
             for (int i = 0; i < sizeLogical; i++) {
                 if (tma[i].getPlayer1Id().equals(id)) {
-                    matchIndex++;
-                } else if (tma[i].getPlayer2Id().equals(id)) {
-                    matchIndex++;
+                    pMatches[matchCount] = tma[i];
+                    if(getScore(pMatches[matchCount].getScore(), id, pMatches[matchCount]) == 1){
+                        totalWins++;
+                    }
+                    else{
+                        totalLoss++;
+                    }
+                    matchCount++;
                 }
-                TennisMatch[] playerMatches = new TennisMatch[matchIndex];
-                matchIndex = 0;
-                for (int index = 0; index < sizeLogical; index++) {
-                    if (tma[i].getPlayer1Id().equals(id)) {
-                        playerMatches[matchIndex] = tma[i];
-                        matchIndex++;
-                    } else if (tma[i].getPlayer2Id().equals(id)) {
-                        playerMatches[matchIndex] = tma[i];
-                        matchIndex++;
+                if (tma[i].getPlayer2Id().equals(id)) {
+                    pMatches[matchCount] = tma[i];
+                    if(getScore(pMatches[matchCount].getScore(), id, pMatches[matchCount]) == 1){
+                        totalWins++;
+                    }
+                    else{
+                        totalLoss++;
+                    }
+                    matchCount++;
+                }
+            }
+            winLoss = "" + totalWins + " - " + totalLoss;
+        }
+        return winLoss;
+    }
+
+    public int getScore(String score, String id, TennisMatch pMatches) throws TennisDatabaseRuntimeException {
+        int scoreWin = 0;
+        int scoreLoss = 0;
+        if (pMatches.getPlayer1Id().equalsIgnoreCase(id)) {
+            if (score.length() == 3) {
+                String player1 = score.substring(0, 1);
+                String player2 = score.substring(score.indexOf('-') + 1, score.length());
+                if (Integer.parseInt(player1) > Integer.parseInt(player2)) {
+                    scoreWin++;
+                } else {
+                    scoreLoss++;
+                }
+            } else {
+                String player1 = score.substring(0, 1);
+                String player2 = score.substring(score.indexOf('-') + 1, score.indexOf('-') + 2);
+                if (Integer.parseInt(player1) > Integer.parseInt(player2)) {
+                    scoreWin++;
+                    if (score.substring(score.indexOf(',') + 1).length() == 3) {
+                        getScore(score.substring(score.indexOf(',') + 1), id, pMatches);
+                    } else {
+                        getScore(score.substring(score.indexOf(',') + 1, score.length()), id, pMatches);
+                    }
+                } else {
+                    scoreLoss++;
+                    if (score.substring(score.indexOf(',') + 1).length() == 3) {
+                        getScore(score.substring(score.indexOf(',') + 1), id, pMatches);
+                    } else {
+                        getScore(score.substring(score.indexOf(',') + 1, score.length()), id, pMatches);
                     }
                 }
-                for ( int index = 0; index < playerMatches.length; index++) {
-                    if (playerMatches[i].getWinner() == 1) {
-                        wins++;
-                    } else if (playerMatches[i].getWinner() == -1) {
-                        losses++;
+            }
+        } else {
+            if (score.length() == 3) {
+                String player1 = score.substring(0, 1);
+                String player2 = score.substring(score.indexOf('-') + 1, score.length());
+                if (Integer.parseInt(player1) < Integer.parseInt(player2)) {
+                    scoreWin++;
+                } else {
+                    scoreLoss++;
+                }
+            } else {
+                String player1 = score.substring(0, 1);
+                String player2 = score.substring(score.indexOf('-') + 1, score.indexOf('-') + 2);
+                if (Integer.parseInt(player1) < Integer.parseInt(player2)) {
+                    scoreWin++;
+                    if (score.substring(score.indexOf(',') + 1).length() == 3) {
+                        getScore(score.substring(score.indexOf(',') + 1), id, pMatches);
+                    } else {
+                        getScore(score.substring(score.indexOf(',') + 1, score.length()), id, pMatches);
+                    }
+                } else {
+                    scoreLoss++;
+                    if (score.substring(score.indexOf(',') + 1).length() == 3) {
+                        getScore(score.substring(score.indexOf(',') + 1), id, pMatches);
+                    } else {
+                        getScore(score.substring(score.indexOf(',') + 1, score.length()), id, pMatches);
                     }
                 }
             }
         }
-        score[0] = wins;
-        score[1] = losses;
-        return score;
+        if (scoreWin > scoreLoss) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
 }
