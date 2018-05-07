@@ -1,20 +1,14 @@
-/*
-Nicholas Rahbany
-CS102
-*/
-
 package TennisDatabase;
 
 public class TennisPlayer implements TennisPlayerInterface {
 
-    // Defines variables used in class
     public String id;
     public String firstName;
     public String lastName;
     public int year;
     public String country;
 
-    public TennisPlayer(String idIn, String firstNameIn, String lastNameIn, int yearIn, String countryIn) { // Constructor
+    public TennisPlayer(String idIn, String firstNameIn, String lastNameIn, int yearIn, String countryIn) {
         this.id = idIn;
         this.firstName = firstNameIn;
         this.lastName = lastNameIn;
@@ -22,23 +16,27 @@ public class TennisPlayer implements TennisPlayerInterface {
         this.country = countryIn;
     }
 
-    public String getId() { // Returns player's ID
-        return this.id;
-    }
-
-    public String getFirstName() { // Returns player's first name
-        return null;
-    }
-
-    public String getLastName() { // Return the player's last name
-        return null;
-    }
-
-    public int getBirthYear() { // Return the player's birth year
+    public int compareTo(TennisPlayer p) {
         return 0;
     }
 
-    public String getCountry() { // Return the player's country
+    public String getId() {
+        return this.id;
+    }
+
+    public String getFirstName() {
+        return null;
+    }
+
+    public String getLastName() {
+        return null;
+    }
+
+    public int getBirthYear() {
+        return 0;
+    }
+
+    public String getCountry() {
         return null;
     }
 
@@ -50,7 +48,7 @@ public class TennisPlayer implements TennisPlayerInterface {
         System.out.println(toString());
     }
 
-    public String toString() { // Stringifys the player
+    public String toString() {
         String result = this.id + ": " + this.firstName + " " + this.lastName + ", " + this.year + ", " + this.country;
         return result;
     }

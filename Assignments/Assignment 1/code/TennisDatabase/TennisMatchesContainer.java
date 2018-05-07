@@ -1,26 +1,21 @@
-/*
-Nicholas Rahbany
-CS102
-*/
-
 package TennisDatabase;
 
 import TennisDatabase.TennisDatabaseRuntimeException;
+import jdk.nashorn.internal.runtime.regexp.joni.MatcherFactory;
 
 public class TennisMatchesContainer implements TennisMatchesContainerInterface {
 
-    // Defines all variables used in class
     private TennisMatch[] tma;
     private int sizeLogical;
     private int sizePhysical;
 
-    public TennisMatchesContainer() { // Cunstructor for TennisMatchesContainer
+    public TennisMatchesContainer() {
         sizePhysical = 2;
         sizeLogical = 0;
         tma = new TennisMatch[sizePhysical];
     }
 
-    public void insertMatch(TennisMatch m) { // Inserts match into a resizable array
+    public void insertMatch(TennisMatch m) {
         if (sizeLogical == sizePhysical) {
             TennisMatch[] tmn = new TennisMatch[tma.length + 1];
             for (int index = 0; index < tma.length; index++) {

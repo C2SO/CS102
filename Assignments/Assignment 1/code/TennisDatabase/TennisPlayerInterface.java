@@ -1,8 +1,3 @@
-/*
-Nicholas Rahbany
-CS102
-*/
-
 package TennisDatabase;
 
 // Interface (package-private) providing the specifications for the TennisPlayer class.

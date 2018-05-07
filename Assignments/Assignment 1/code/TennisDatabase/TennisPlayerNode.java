@@ -1,55 +1,49 @@
-/*
-Nicholas Rahbany
-CS102
-*/
-
 package TennisDatabase;
 
 public class TennisPlayerNode implements TennisPlayerNodeInterface {
-
-    // Defines variables
     TennisPlayer item;
     TennisPlayerNode next;
     TennisPlayerNode prev;
     TennisMatch[] playerMatches = new TennisMatch[1];
 
-    public TennisPlayerNode(TennisPlayer p) { // Constructor
+    public TennisPlayerNode(TennisPlayer p) {
         item = p;
         next = null;
         prev = null;
     }
 
-    public TennisPlayerNode(TennisPlayer p, TennisPlayerNode n) { // Constructor
+    public TennisPlayerNode(TennisPlayer p, TennisPlayerNode n) {
         item = p;
         next = n;
         prev = null;
     }
 
-    public TennisPlayer getPlayer() { // Returns the player
+    public TennisPlayer getPlayer() {
         return this.item;
     }
 
-    public String getId() { // Return's the player's ID
-        return this.item.getId();
+    public String getId() {
+        String id = this.item.getId();
+        return id;
     }
 
-    public TennisPlayerNode getPrev() { // Gets previous node
+    public TennisPlayerNode getPrev() {
         return this.prev;
     }
 
-    public TennisPlayerNode getNext() { // Gets next node
+    public TennisPlayerNode getNext() {
         return this.next;
     }
 
-    public void setPrev(TennisPlayerNode prevNode) { // Sets previous node
+    public void setPrev(TennisPlayerNode prevNode) {
         this.prev = prevNode;
     }
 
-    public void setNext(TennisPlayerNode nextNode) { // Sets next node
+    public void setNext(TennisPlayerNode nextNode) {
         this.next = nextNode;
     }
 
-    public void insertMatch(TennisMatch m) { // Inserts match for player node ( Broken )
+    public void insertMatch(TennisMatch m) {
         if (playerMatches.length == 1)
             playerMatches[0] = m;
         else {
@@ -73,7 +67,7 @@ public class TennisPlayerNode implements TennisPlayerNodeInterface {
         }
     }
 
-    public int compareTo(String input) { // Compares current ID to input ID
+    public int compareTo(String input) {
         String tempInput = this.item.getId();
         if (tempInput == input) {
             return 1;

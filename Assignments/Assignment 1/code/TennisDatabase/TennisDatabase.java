@@ -1,8 +1,3 @@
-/*
-Nicholas Rahbany
-CS102
-*/
-
 package TennisDatabase;
 
 import java.io.*;

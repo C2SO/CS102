@@ -1,8 +1,3 @@
-/*
-Nicholas Rahbany
-CS102
-*/
-
 import java.io.*;
 import java.util.Scanner;
 

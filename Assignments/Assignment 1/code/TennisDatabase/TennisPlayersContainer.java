@@ -1,8 +1,3 @@
-/*
-Nicholas Rahbany
-CS102
-*/
-
 package TennisDatabase;
 
 public class TennisPlayersContainer implements TennisPlayersContainerInterface {
@@ -18,10 +13,10 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
     public void insertPlayer(TennisPlayer p) throws TennisDatabaseRuntimeException {
         TennisPlayerNode newNode = new TennisPlayerNode(p);
         if (numPlayers == 0) {
-           head = newNode;
-           head.setPrev(head);
-           head.setNext(head);
-           numPlayers++;
+            head = newNode;
+            head.setPrev(head);
+            head.setNext(head);
+            numPlayers++;
         } else {
            TennisPlayerNode currNode = head;
            int indexCurrNode = 0;
