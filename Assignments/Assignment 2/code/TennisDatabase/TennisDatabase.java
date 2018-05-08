@@ -73,6 +73,10 @@ public class TennisDatabase implements TennisDatabaseInterface {
         tpc.insertPlayer(p);
     }
 
+    public void deletePlayer(String deletePlayerId) {
+        tpc.deletePlayer(deletePlayerId);
+    }
+
     public void insertMatch(String idPlayer1, String idPlayer2, int year, int month, int day, String tournament,
             String score) { // Inserts a match
         TennisMatch m = new TennisMatch(idPlayer1, idPlayer2, year, month, day, tournament, score);

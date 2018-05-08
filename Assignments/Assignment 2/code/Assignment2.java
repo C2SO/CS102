@@ -30,7 +30,7 @@ public class Assignment2 {
         Scanner user = new Scanner(System.in); // Scans console for user input
         while (systemRunning) { // While system is running, ask for the user to select an option
             System.out.println(
-                    "\nSelect an option my entering the option's number:\n1. Print Players\n2. Print Matches\n3. Print All Matches For A Player\n4. Add a Player\n5. Add a Match\n\n0. Exit\n\nTODO:\nFix Tennis Match Sorting\nDelete Player\nReset Tennis Database (Clear all Matches and Players)\nDevelop GUI\nImport and Export File\n");
+                    "\nSelect an option my entering the option's number:\n1. Print Players\n2. Print Matches\n3. Print All Matches For A Player\n4. Add a Player\n5. Add a Match\n6. Delete a Player\n\n0. Exit\n\nTODO:\nFix Tennis Match Sorting\nReset Tennis Database (Clear all Matches and Players)\nDevelop GUI\nImport and Export File\n");
             option = user.nextInt(); // Takes in user input
             switch (option) {
             case 1:
@@ -73,6 +73,11 @@ public class Assignment2 {
                 System.out.println("Enter the Score\nExample: 6-4,5-7,6-4,6-4");
                 String scoreInput = user.next();
                 tdb.insertMatch(idPlayer1, idPlayer2, yearInput, monthInput, dayInput, tournamentInput, scoreInput); // Adds match
+                break;
+            case 6: // Asks user to giver player ID to delete
+                System.out.println("What Player ID would you like to delete?");
+                String deletePlayerId = user.next();
+                tdb.deletePlayer(deletePlayerId);
                 break;
             case 0:
                 systemRunning = false; // Stops the program

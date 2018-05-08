@@ -19,7 +19,7 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
         this.numPlayers = 0;
     }
 
-    public String getPlayerName( String id ) {
+    public String getPlayerName(String id) {
         String firstName = this.getTennisPlayerNode(id).getPlayer().getFirstName();
         String lastName = this.getTennisPlayerNode(id).getPlayer().getLastName();
         String result;
@@ -41,7 +41,7 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
                 currNode = currNode.getNext();
                 i++;
             }
-            if (i == 0){
+            if (i == 0) {
                 this.head = newNode;
             }
             newNode.setNext(currNode);
@@ -50,6 +50,30 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
             currNode.setPrev(newNode);
             this.numPlayers++;
         }
+    }
+
+    public void deletePlayer(String deletePlayerId) throws TennisDatabaseRuntimeException {
+        if (deletePlayerId == null) {
+            throw new NullPointerException("Id = null");
+        }
+        TennisPlayer p = this.getTennisPlayerNode(deletePlayerId).getPlayer();
+        TennisPlayerNode currNode = this.head;
+        TennisPlayerNode prevNode = currNode.getPrev();
+        TennisPlayerNode nextNode = currNode.getNext();
+        int i = 0;
+        while ((i < this.numPlayers) && (p.compareTo(currNode.getPlayer()) != 0)) {
+            prevNode = currNode;
+            currNode = nextNode;
+            nextNode = currNode.getNext();
+            i++;
+        }
+        if (i == 0) {
+            this.head = nextNode;
+        }
+        currNode = null;
+        prevNode.setNext(nextNode);
+        nextNode.setPrev(prevNode);
+        numPlayers--;
     }
 
     public TennisPlayerNode getTennisPlayerNode(String id) {
