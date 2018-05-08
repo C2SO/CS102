@@ -12,7 +12,6 @@ import TennisDatabase.TennisDatabaseRuntimeException;
 
 public class Assignment2 {
 
-    private static File inputFile; // Defines the input file
     static TennisDatabase tdb;
 
     public static void main(String[] args) throws FileNotFoundException {
