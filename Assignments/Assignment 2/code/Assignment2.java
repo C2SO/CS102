@@ -30,7 +30,7 @@ public class Assignment2 {
         Scanner user = new Scanner(System.in); // Scans console for user input
         while (systemRunning) { // While system is running, ask for the user to select an option
             System.out.println(
-                    "Select an option my entering the option's number:\n1. Print Players\n2. Print Matches\n3. Print All Matches For A Player\n4. Add a Player\n5. Add a Match\n\n0. Exit\n\nTODO: Fix Tennis Match Sorting");
+                    "\nSelect an option my entering the option's number:\n1. Print Players\n2. Print Matches\n3. Print All Matches For A Player\n4. Add a Player\n5. Add a Match\n\n0. Exit\n\nTODO:\nFix Tennis Match Sorting\nDelete Player\nReset Tennis Database (Clear all Matches and Players)\nDevelop GUI\nImport and Export File\n");
             option = user.nextInt(); // Takes in user input
             switch (option) {
             case 1:
