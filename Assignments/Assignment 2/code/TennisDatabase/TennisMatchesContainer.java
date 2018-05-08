@@ -45,14 +45,17 @@ public class TennisMatchesContainer implements TennisMatchesContainerInterface {
         }
     }
 
-    public void printAllMatches() throws TennisDatabaseRuntimeException {
+    public void printAllMatches(TennisPlayersContainer tpc) throws TennisDatabaseRuntimeException {
+        System.out.println();
+        System.out.println("Tennis Matches on Record: ");
         if (tma.length == 0) {
             throw new TennisDatabaseRuntimeException("No Tennis Matches Available");
         } else {
             for (int i = 0; i < sizeLogical; i++) {
-                tma[i].print();
+                tma[i].print(tpc);
             }
         }
+        System.out.println();
     }
 
     public String getPlayerScoreList(String id) throws TennisDatabaseRuntimeException {

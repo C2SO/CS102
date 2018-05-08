@@ -19,6 +19,14 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
         this.numPlayers = 0;
     }
 
+    public String getPlayerName( String id ) {
+        String firstName = this.getTennisPlayerNode(id).getPlayer().getFirstName();
+        String lastName = this.getTennisPlayerNode(id).getPlayer().getLastName();
+        String result;
+        result = firstName + " " + lastName;
+        return result;
+    }
+
     public void insertPlayer(TennisPlayer p) throws TennisDatabaseRuntimeException {
         TennisPlayerNode newNode = new TennisPlayerNode(p);
         if (this.numPlayers == 0) {

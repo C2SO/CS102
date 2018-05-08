@@ -27,19 +27,19 @@ public class TennisPlayer implements TennisPlayerInterface {
     }
 
     public String getFirstName() { // Returns player's first name
-        return null;
+        return this.firstName;
     }
 
     public String getLastName() { // Return the player's last name
-        return null;
+        return this.lastName;
     }
 
     public int getBirthYear() { // Return the player's birth year
-        return 0;
+        return this.year;
     }
 
     public String getCountry() { // Return the player's country
-        return null;
+        return this.country;
     }
 
     public int compareTo(TennisPlayer tp) {

@@ -26,6 +26,6 @@ interface TennisMatchInterface extends Comparable<TennisMatch> {
 
     public int getWinner(); // Gets the winner of the match
 
-    public void print(); // Prints this tennis match on the console.
+    public void print(TennisPlayersContainer tpc); // Prints this tennis match on the console.
 
 }

@@ -65,7 +65,7 @@ public class TennisDatabase implements TennisDatabaseInterface {
     }
 
     public void printAllMatches() {
-        tmc.printAllMatches(); // Prints all matches
+        tmc.printAllMatches(tpc); // Prints all matches
     }
 
     public void insertPlayer(String id, String firstName, String lastName, int year, String country) { // Inserts player
