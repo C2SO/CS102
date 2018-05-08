@@ -15,6 +15,17 @@ public class TennisMatchNode implements TennisMatchNodeInterface {
     TennisMatchNode next;
     TennisMatch match;
 
+    public TennisMatchNode(TennisMatch match){
+        this.match = match;
+        this.next = null;
+        this.prev = null;
+    }
+    public TennisMatchNode(TennisMatch match, TennisMatchNode n){
+        this.match = match;
+        this.next = n;
+        this.prev = null;
+    }
+
     public TennisMatch getMatch() { // Returns the match
         return this.match;
     }

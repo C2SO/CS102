@@ -16,14 +16,10 @@ public class Assignment1 {
     static TennisDatabase tdb;
 
     public static void main(String[] args) throws FileNotFoundException {
-        Scanner read = new Scanner(System.in);
-        System.out.println("What file would you like to imput from?\nExample: inputFile.txt");
-        String fileInput = read.next();
-        inputFile = new File(fileInput); // Set Input file
         // Check if there are no command line arguments
         tdb = new TennisDatabase();
         // Load Data from file
-        tdb.loadFile(inputFile);
+        tdb.loadFile();
         // Check command and activate the relative tennis database opertations
         runProgram();
     }

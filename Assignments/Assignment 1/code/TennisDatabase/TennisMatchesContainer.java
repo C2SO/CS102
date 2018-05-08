@@ -165,4 +165,18 @@ public class TennisMatchesContainer implements TennisMatchesContainerInterface {
             return -1;
         }
     }
+
+    public void printMatchesOfPlayer(String Id) throws TennisDatabaseRuntimeException {
+        if (tma.length == 0) { //if no matches
+            throw new TennisDatabaseRuntimeException("No Tennis Matches Available");
+        } else {
+            for (int i = 0; i < sizeLogical; i++) { //for all matches
+
+                if (tma[i].getPlayer1Id().equals(Id))
+                    tma[i].print();//print if player id1 is id
+                if (tma[i].getPlayer2Id().equals(Id))
+                    tma[i].print();//print if player id2 is id
+            }
+        }
+    }
 }
