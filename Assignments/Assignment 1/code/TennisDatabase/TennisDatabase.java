@@ -57,24 +57,24 @@ public class TennisDatabase implements TennisDatabaseInterface {
     }
 
     public void printAllPlayers() {
-        tpc.printAllPlayers(tmc);
+        tpc.printAllPlayers(tmc); // Prints all players
     }
 
     public void printMatchesOfPlayer(String Id) {
-        tmc.printMatchesOfPlayer(Id);
+        tmc.printMatchesOfPlayer(Id); // Prints matches of players
     }
 
     public void printAllMatches() {
-        tmc.printAllMatches();
+        tmc.printAllMatches(); // Prints all matches
     }
 
-    public void insertPlayer(String id, String firstName, String lastName, int year, String country) {
+    public void insertPlayer(String id, String firstName, String lastName, int year, String country) { // Inserts player
         TennisPlayer p = new TennisPlayer(id, firstName, lastName, year, country);
         tpc.insertPlayer(p);
     }
 
     public void insertMatch(String idPlayer1, String idPlayer2, int year, int month, int day, String tournament,
-            String score) {
+            String score) { // Inserts a match
         TennisMatch m = new TennisMatch(idPlayer1, idPlayer2, year, month, day, tournament, score);
         tmc.insertMatch(m);
         tpc.insertMatch(m);
