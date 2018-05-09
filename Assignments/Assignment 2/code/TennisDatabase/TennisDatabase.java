@@ -83,4 +83,10 @@ public class TennisDatabase implements TennisDatabaseInterface {
         tmc.insertMatch(m);
         tpc.insertMatch(m);
     }
+
+    public void resetDatabase() {
+        this.tmc = new TennisMatchesContainer();
+        this.tpc = new TennisPlayersContainer();
+        loadFile();
+    }
 }
