@@ -85,12 +85,12 @@ public class Assignment2 {
                 tdb.loadFile();
                 break;
             case 9: // Resets Database
-                System.out.println();
-                System.out.println("Would you like to export the database? (Y or N)");
-                String export = user.next();
-                if (export == "Y") {
-                    System.out.println("Not implemented yet");
-                }
+                // System.out.println();
+                // System.out.println("Would you like to export the database? (Y or N)");
+                // String export = user.next();
+                // if (export == "Y" || export == "y") {
+                //     System.out.println("Not implemented yet");
+                // }
                 tdb.resetDatabase();
                 break;
             case 0:
@@ -101,5 +101,6 @@ public class Assignment2 {
                 break;
             }
         }
+        user.close();
     }
 }

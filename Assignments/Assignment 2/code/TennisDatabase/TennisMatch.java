@@ -111,11 +111,6 @@ public class TennisMatch implements TennisMatchInterface {
         }
     }
 
-    public void print() { // Prints out match data
-        System.out.println(
-                year + "/" + month + "/" + day + ", " + idPlayer1 + "-" + idPlayer2 + ", " + tournament + "," + score);
-    }
-
     public void print(TennisPlayersContainer tpc) { // Prints out match data
         String player1 = tpc.getPlayerName(idPlayer1);
         String player2 = tpc.getPlayerName(idPlayer2);
