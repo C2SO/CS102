@@ -12,6 +12,8 @@ public class TennisDatabase implements TennisDatabaseInterface {
     private TennisPlayersContainer tpc;
     private TennisMatchesContainer tmc;
     private static File inFile;
+    private static File outFile;
+    private static PrintStream write;
     private static Scanner read;
 
     public TennisDatabase() {
@@ -88,5 +90,22 @@ public class TennisDatabase implements TennisDatabaseInterface {
         this.tmc = new TennisMatchesContainer();
         this.tpc = new TennisPlayersContainer();
         loadFile();
+    }
+
+    public void exportFile() {
+        boolean valid = false;
+        do {
+            try {
+                System.out.println("Enter a file name: ");
+                System.out.println("Example: outputFile.txt");
+                fileName = terminal.next();
+                outFile = new File(fileName);
+                read = new Scanner(outFile);
+                valid = true;
+            } catch (FileNotFoundException invalidFile) {
+                System.out.println("Input a valid file name");
+            }
+        } while (!valid);
+        write = new PrintStream(outFile);
     }
 }

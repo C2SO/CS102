@@ -79,7 +79,7 @@ public class Assignment2 {
                 tdb.deletePlayer(deletePlayerId);
                 break;
             case 7: // Exports Database
-                System.out.println("Not implemented yet");
+                tdb.exportFile();
                 break;
             case 8: // Imports another file
                 tdb.loadFile();
