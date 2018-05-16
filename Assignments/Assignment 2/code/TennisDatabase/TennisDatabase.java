@@ -92,20 +92,20 @@ public class TennisDatabase implements TennisDatabaseInterface {
         loadFile();
     }
 
-    public void exportFile() {
-        boolean valid = false;
-        do {
-            try {
-                System.out.println("Enter a file name: ");
-                System.out.println("Example: outputFile.txt");
-                fileName = terminal.next();
-                outFile = new File(fileName);
-                read = new Scanner(outFile);
-                valid = true;
-            } catch (FileNotFoundException invalidFile) {
-                System.out.println("Input a valid file name");
-            }
-        } while (!valid);
-        write = new PrintStream(outFile);
-    }
+    // public void exportFile() {
+    //     boolean valid = false;
+    //     do {
+    //         try {
+    //             System.out.println("Enter a file name: ");
+    //             System.out.println("Example: outputFile.txt");
+    //             fileName = terminal.next();
+    //             outFile = new File(fileName);
+    //             read = new Scanner(outFile);
+    //             valid = true;
+    //         } catch (FileNotFoundException invalidFile) {
+    //             System.out.println("Input a valid file name");
+    //         }
+    //     } while (!valid);
+    //     write = new PrintStream(outFile);
+    // }
 }

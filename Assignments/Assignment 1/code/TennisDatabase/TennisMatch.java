@@ -16,7 +16,7 @@ public class TennisMatch implements TennisMatchInterface {
     String tournament;
     String score;
 
-    public TennisMatch(String idPlayer1In, String idPlayer2In, int dayIn, int monthIn, int yearIn, String tournamentIn,
+    public TennisMatch(String idPlayer1In, String idPlayer2In, int yearIn, int monthIn, int dayIn, String tournamentIn,
             String scoreIn) { // Constructor for TennisMatch
         this.idPlayer1 = idPlayer1In;
         this.idPlayer2 = idPlayer2In;
