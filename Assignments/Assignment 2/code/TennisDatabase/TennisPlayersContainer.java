@@ -37,18 +37,26 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
         } else {
             TennisPlayerNode currNode = this.head;
             int i = 0;
-            while ((i < this.numPlayers) && (p.compareTo(currNode.getPlayer()) > 0)) {
-                currNode = currNode.getNext();
-                i++;
+            int index = 0;
+            while ((index < this.numPlayers) && (p.compareTo(currNode.getPlayer()) != 0)) {
+                index++;
             }
-            if (i == 0) {
-                this.head = newNode;
+            if (index == this.numPlayers) {
+                while ((i < this.numPlayers) && (p.compareTo(currNode.getPlayer()) > 0)) {
+                    currNode = currNode.getNext();
+                    i++;
+                }
+                if (i == 0) {
+                    this.head = newNode;
+                }
+                newNode.setNext(currNode);
+                newNode.setPrev(currNode.getPrev());
+                currNode.getPrev().setNext(newNode);
+                currNode.setPrev(newNode);
+                this.numPlayers++;
+            } else {
+                System.out.println("Duplicate Player ID. Please Use a New Player ID.");
             }
-            newNode.setNext(currNode);
-            newNode.setPrev(currNode.getPrev());
-            currNode.getPrev().setNext(newNode);
-            currNode.setPrev(newNode);
-            this.numPlayers++;
         }
     }
 
