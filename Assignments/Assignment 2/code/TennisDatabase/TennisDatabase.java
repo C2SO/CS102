@@ -47,7 +47,9 @@ public class TennisDatabase implements TennisDatabaseInterface {
                 insertPlayer(data[1], data[2], data[3], Integer.parseInt(data[4]), data[5]); // Add Player
                 break;
             case 'M':
-                TennisMatch m = new TennisMatch(data[1], data[2], Integer.parseInt(data[3].substring(0, 4)),
+                TennisPlayer player1 = tpc.getTennisPlayerNode(data[1]).getPlayer();
+                TennisPlayer player2 = tpc.getTennisPlayerNode(data[2]).getPlayer();
+                TennisMatch m = new TennisMatch(player1, player2, Integer.parseInt(data[3].substring(0, 4)),
                         Integer.parseInt(data[3].substring(4, 6)), Integer.parseInt(data[3].substring(6, 8)), data[4],
                         data[5]);
                 tmc.insertMatch(m); // Add Match
@@ -81,7 +83,9 @@ public class TennisDatabase implements TennisDatabaseInterface {
 
     public void insertMatch(String idPlayer1, String idPlayer2, int year, int month, int day, String tournament,
             String score) { // Inserts a match
-        TennisMatch m = new TennisMatch(idPlayer1, idPlayer2, year, month, day, tournament, score);
+        TennisPlayer player1 = tpc.getTennisPlayerNode(idPlayer1).getPlayer();
+        TennisPlayer player2 = tpc.getTennisPlayerNode(idPlayer2).getPlayer();
+        TennisMatch m = new TennisMatch(player1, player2, year, month, day, tournament, score);
         tmc.insertMatch(m);
         tpc.insertMatch(m);
     }
@@ -93,19 +97,19 @@ public class TennisDatabase implements TennisDatabaseInterface {
     }
 
     // public void exportFile() {
-    //     boolean valid = false;
-    //     do {
-    //         try {
-    //             System.out.println("Enter a file name: ");
-    //             System.out.println("Example: outputFile.txt");
-    //             fileName = terminal.next();
-    //             outFile = new File(fileName);
-    //             read = new Scanner(outFile);
-    //             valid = true;
-    //         } catch (FileNotFoundException invalidFile) {
-    //             System.out.println("Input a valid file name");
-    //         }
-    //     } while (!valid);
-    //     write = new PrintStream(outFile);
+    // boolean valid = false;
+    // do {
+    // try {
+    // System.out.println("Enter a file name: ");
+    // System.out.println("Example: outputFile.txt");
+    // fileName = terminal.next();
+    // outFile = new File(fileName);
+    // read = new Scanner(outFile);
+    // valid = true;
+    // } catch (FileNotFoundException invalidFile) {
+    // System.out.println("Input a valid file name");
+    // }
+    // } while (!valid);
+    // write = new PrintStream(outFile);
     // }
 }

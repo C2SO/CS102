@@ -8,18 +8,18 @@ package TennisDatabase;
 public class TennisMatch implements TennisMatchInterface {
 
     // Defines all variables used in class
-    String idPlayer1;
-    String idPlayer2;
+    TennisPlayer player1;
+    TennisPlayer player2;
     int day;
     int month;
     int year;
     String tournament;
     String score;
 
-    public TennisMatch(String idPlayer1In, String idPlayer2In, int yearIn, int monthIn, int dayIn, String tournamentIn,
-            String scoreIn) { // Constructor for TennisMatch
-        this.idPlayer1 = idPlayer1In;
-        this.idPlayer2 = idPlayer2In;
+    public TennisMatch(TennisPlayer player1In, TennisPlayer player2In, int yearIn, int monthIn, int dayIn,
+            String tournamentIn, String scoreIn) { // Constructor for TennisMatch
+        this.player1 = player1In;
+        this.player2 = player2In;
         this.day = dayIn;
         this.month = monthIn;
         this.year = yearIn;
@@ -28,11 +28,11 @@ public class TennisMatch implements TennisMatchInterface {
     }
 
     public String getPlayer1Id() { // Returns player 1's id of the match
-        return this.idPlayer1;
+        return player1.getId();
     }
 
     public String getPlayer2Id() { // Returns player 2's id of the match
-        return this.idPlayer2;
+        return player2.getId();
     }
 
     public int getDateYear() { // Returns the year of the match
@@ -112,13 +112,13 @@ public class TennisMatch implements TennisMatchInterface {
     }
 
     public void print(TennisPlayersContainer tpc) { // Prints out match data
-        String player1 = tpc.getPlayerName(idPlayer1);
-        String player2 = tpc.getPlayerName(idPlayer2);
-        System.out.println(
-                year + "/" + month + "/" + day + ", " + player1 + " - " + player2 + ", " + tournament + "," + score);
+        String player1Name = tpc.getPlayerName(player1.getId());
+        String player2Name = tpc.getPlayerName(player2.getId());
+        System.out.println(year + "/" + month + "/" + day + ", " + player1Name + " - " + player2Name + ", " + tournament
+                + "," + score);
     }
 
     public String toString() { // Returns a string of the match data
-        return (year + "/" + month + "/" + day + ", " + idPlayer1 + "-" + idPlayer2 + ", " + tournament + "," + score);
+        return (year + "/" + month + "/" + day + ", " + player1 + "-" + player2 + ", " + tournament + "," + score);
     }
 }

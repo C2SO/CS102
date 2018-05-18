@@ -39,9 +39,20 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
             int i = 0;
             int index = 0;
             while ((index < this.numPlayers) && (p.compareTo(currNode.getPlayer()) != 0)) {
+                currNode = currNode.getNext();
                 index++;
             }
+            if (index < numPlayers) {
+                if (currNode.getPlayer().getDummy() == true) {
+                    deletePlayer(currNode.getId());
+                    insertPlayer(p);
+                }
+                else {
+                    System.out.println("Duplicate Player ID. Please Use a New Player ID."); 
+                }
+            }
             if (index == this.numPlayers) {
+                currNode = this.head;
                 while ((i < this.numPlayers) && (p.compareTo(currNode.getPlayer()) > 0)) {
                     currNode = currNode.getNext();
                     i++;
@@ -54,8 +65,6 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
                 currNode.getPrev().setNext(newNode);
                 currNode.setPrev(newNode);
                 this.numPlayers++;
-            } else {
-                System.out.println("Duplicate Player ID. Please Use a New Player ID.");
             }
         }
     }
@@ -86,14 +95,17 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
 
     public TennisPlayerNode getTennisPlayerNode(String id) {
         TennisPlayerNode currNode = head;
-        for (int i = 0; (i < numPlayers) && (currNode.getPlayer().getId().compareTo(id) <= 0); i++) {
+        int i = 0;
+        for (i = 0; (i < numPlayers) && (currNode.getPlayer().getId().compareTo(id) <= 0); i++) {
             if (currNode.getPlayer().getId().equals(id)) {
                 return currNode;
             } else {
                 currNode = currNode.getNext();
             }
         }
-        return null;
+        TennisPlayer temp = new TennisPlayer(id, null, null, 0, null, true);
+        insertPlayer(temp);
+        return getTennisPlayerNode(id);
     }
 
     public TennisPlayer checkPlayer(String id) {
