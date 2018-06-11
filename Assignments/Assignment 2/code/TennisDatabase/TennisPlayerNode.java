@@ -9,20 +9,20 @@ public class TennisPlayerNode implements TennisPlayerNodeInterface {
 
     // Defines variables
     TennisPlayer item;
-    TennisPlayerNode next;
-    TennisPlayerNode prev;
+    TennisPlayerNode right;
+    TennisPlayerNode left;
     TennisMatch[] playerMatches = new TennisMatch[1];
 
     public TennisPlayerNode(TennisPlayer p) { // Constructor
         item = p;
-        next = null;
-        prev = null;
+        right = null;
+        left = null;
     }
 
-    public TennisPlayerNode(TennisPlayer p, TennisPlayerNode n) { // Constructor
+    public TennisPlayerNode(TennisPlayer p, TennisPlayerNode r, TennisPlayerNode l) { // Constructor
         item = p;
-        next = n;
-        prev = null;
+        right = r;
+        left = l;
     }
 
     public TennisPlayer getPlayer() { // Returns the player
@@ -33,20 +33,20 @@ public class TennisPlayerNode implements TennisPlayerNodeInterface {
         return this.item.getId();
     }
 
-    public TennisPlayerNode getPrev() { // Gets previous node
-        return this.prev;
+    public TennisPlayerNode getLeft() { // Gets left node
+        return this.left;
     }
 
-    public TennisPlayerNode getNext() { // Gets next node
-        return this.next;
+    public TennisPlayerNode getRight() { // Gets right node
+        return this.right;
     }
 
-    public void setPrev(TennisPlayerNode prevNode) { // Sets previous node
-        this.prev = prevNode;
+    public void setLeft(TennisPlayerNode leftNode) { // Sets left node
+        this.left = leftNode;
     }
 
-    public void setNext(TennisPlayerNode nextNode) { // Sets next node
-        this.next = nextNode;
+    public void setRight(TennisPlayerNode rightNode) { // Sets right node
+        this.right = nextNode;
     }
 
     public void insertMatch(TennisMatch m) { // Inserts match for player node ( Broken )
