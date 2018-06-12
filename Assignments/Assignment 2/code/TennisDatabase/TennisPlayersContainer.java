@@ -22,7 +22,12 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
         if (currRoot == null) {
             return new TennisPlayerNode(player);
         } else if (currRoot.getPlayer().getId().compareTo(player.getId()) == 0) {
-            throw new TennisDatabaseRuntimeException("Duplicate...");
+            if (currRoot.getPlayer().getDummy() == true) {
+                currRoot.setPlayer(player);
+                return currRoot;
+            } else {
+                throw new TennisDatabaseRuntimeException("Duplicate...");
+            }
         } else if (currRoot.getPlayer().getId().compareTo(player.getId()) < 0) {
             // input player greater than current root: go right.
             currRoot.setRightChild(insertPlayerRec(currRoot.getRightChild(), player));
@@ -46,7 +51,26 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
     }
 
     public TennisPlayerNode getTennisPlayerNode(String id) {
-        return root;
+        return getTennisPlayerNodeRec(id, this.root);
+    }
+
+    public TennisPlayerNode getTennisPlayerNodeRec(String id, TennisPlayerNode currRoot) {
+        TennisPlayerNode currNode = currRoot;
+        if (currNode == null) {
+            TennisPlayer temp = new TennisPlayer(id, null, null, 0, null, true);
+            insertPlayer(temp);
+            return getTennisPlayerNode(id);
+        }
+        if (currNode.getPlayer().getId().equals(id)) {
+            return currNode;
+        } else {
+            if (currNode.getPlayer().getId().compareTo(id) > 0) {
+                return getTennisPlayerNodeRec(id, currNode.getLeftChild());
+            } else {
+                return getTennisPlayerNodeRec(id, currNode.getRightChild());
+            }
+        }
+
     }
 
     public TennisPlayer checkPlayer(String id) {

@@ -19,7 +19,7 @@ public class TennisDatabase implements TennisDatabaseInterface {
     public TennisDatabase() {
         tpc = new TennisPlayersContainer();
         tmc = new TennisMatchesContainer();
-input    }
+    }
 
     public void loadFile() {
         Scanner terminal = new Scanner(System.in);
