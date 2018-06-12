@@ -48,6 +48,7 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
     }
 
     public void deletePlayer(String deletePlayerId) throws TennisDatabaseRuntimeException {
+        
     }
 
     public TennisPlayerNode getTennisPlayerNode(String id) {
@@ -77,9 +78,6 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
         return root.getPlayer();
     }
 
-    public void insertMatch(TennisMatch m) throws TennisDatabaseRuntimeException {
-    }
-
     public void printAllPlayers(TennisMatchesContainer tmc) throws TennisDatabaseRuntimeException {
         System.out.println();
         printAllPlayersRec(this.root, tmc);
@@ -99,8 +97,5 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
             }
             printAllPlayersRec(node.getRightChild(), tmc);
         }
-    }
-
-    public void printMatchesOfPlayer(String playerId) throws TennisDatabaseRuntimeException {
     }
 }
