@@ -14,14 +14,11 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
         this.root = null;
     }
 
-    // ...
     public void insertPlayer(TennisPlayer player) {
         this.root = insertPlayerRec(this.root, player);
     }
 
-    // ...
     private TennisPlayerNode insertPlayerRec(TennisPlayerNode currRoot, TennisPlayer player) {
-        // ...
         if (currRoot == null) {
             return new TennisPlayerNode(player);
         } else if (currRoot.getPlayer().getId().compareTo(player.getId()) == 0) {
@@ -61,19 +58,21 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
 
     public void printAllPlayers(TennisMatchesContainer tmc) throws TennisDatabaseRuntimeException {
         System.out.println();
-        TennisPlayerNode currNode = this.root;
-        System.out.println(currNode.getPlayer() + ", " + tmc.getPlayerScoreList(currNode.getPlayer().getId()));
-        printAllPlayersRec(currNode.getLeftChild(), tmc);
-        printAllPlayersRec(currNode.getRightChild(), tmc);
+        printAllPlayersRec(this.root, tmc);
         System.out.println();
     }
 
-    public void printAllPlayersRec(TennisPlayerNode node, TennisMatchesContainer tmc) throws TennisDatabaseRuntimeException {
+    public void printAllPlayersRec(TennisPlayerNode node, TennisMatchesContainer tmc)
+            throws TennisDatabaseRuntimeException {
         if (node == null) {
             return;
         } else {
-            System.out.println(node.getPlayer() + ", " + tmc.getPlayerScoreList(node.getPlayer().getId()));
-            printAllPlayersRec(node.getLeftChild(), tmc);
+            if (node.getLeftChild() == null) {
+                System.out.println(node.getPlayer() + ", " + tmc.getPlayerScoreList(node.getPlayer().getId()));
+            } else {
+                printAllPlayersRec(node.getLeftChild(), tmc);
+                System.out.println(node.getPlayer() + ", " + tmc.getPlayerScoreList(node.getPlayer().getId()));
+            }
             printAllPlayersRec(node.getRightChild(), tmc);
         }
     }
