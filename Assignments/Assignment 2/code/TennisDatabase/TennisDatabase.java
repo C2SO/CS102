@@ -53,7 +53,6 @@ public class TennisDatabase implements TennisDatabaseInterface {
                         Integer.parseInt(data[3].substring(4, 6)), Integer.parseInt(data[3].substring(6, 8)), data[4],
                         data[5]);
                 tmc.insertMatch(m); // Add Match
-                tpc.insertMatch(m); // Add Match for players
                 break;
             }
         }
@@ -87,7 +86,6 @@ public class TennisDatabase implements TennisDatabaseInterface {
         TennisPlayer player2 = tpc.getTennisPlayerNode(idPlayer2).getPlayer();
         TennisMatch m = new TennisMatch(player1, player2, year, month, day, tournament, score);
         tmc.insertMatch(m);
-        tpc.insertMatch(m);
     }
 
     public void resetDatabase() {
