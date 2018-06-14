@@ -67,7 +67,7 @@ public class Assignment2 {
                 Integer monthInput = user.nextInt();
                 System.out.println("Enter the Year of the Match");
                 Integer yearInput = user.nextInt();
-                System.out.println("Enter the Name of the Tournament");
+                System.out.println("Enter the Name of the Tournament (Ex. Kettering_Cup)");
                 String tournamentInput = user.next();
                 System.out.println("Enter the Score\nExample: 6-4,5-7,6-4,6-4");
                 String scoreInput = user.next();
