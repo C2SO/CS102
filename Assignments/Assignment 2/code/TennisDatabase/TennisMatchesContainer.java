@@ -10,14 +10,16 @@ import TennisDatabase.TennisDatabaseRuntimeException;
 public class TennisMatchesContainer implements TennisMatchesContainerInterface {
 
     // Defines all variables used in class
-    private TennisMatch[] tma;
-    private int sizeLogical;
-    private int sizePhysical;
+    //private TennisMatch[] tma;
+    //private int sizeLogical;
+    //private int sizePhysical;
+    private LinkedList<TennisMatch> tml;
 
     public TennisMatchesContainer() { // Cunstructor for TennisMatchesContainer
-        sizePhysical = 2;
-        sizeLogical = 0;
-        tma = new TennisMatch[sizePhysical];
+        //sizePhysical = 2;
+        //sizeLogical = 0;
+        //tma = new TennisMatch[sizePhysical];
+        tml = new LinkedList<TennisMatch>();
     }
 
     public void insertMatch(TennisMatch m) { // Inserts match into a resizable array
