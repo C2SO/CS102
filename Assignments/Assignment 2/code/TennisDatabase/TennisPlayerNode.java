@@ -24,6 +24,13 @@ public class TennisPlayerNode implements TennisPlayerNodeInterface {
         return this.player;
     }
 
+    public void setNode(TennisPlayerNode setNode) {
+        this.playerId = setNode.playerId;
+        this.player = setNode.player;
+        this.leftChild = setNode.leftChild;
+        this.rightChild = setNode.rightChild;
+    }
+
     public void setPlayer(TennisPlayer playerIn) {
         this.player = playerIn;
     }
@@ -47,17 +54,6 @@ public class TennisPlayerNode implements TennisPlayerNodeInterface {
 
     public String getId() { // Return's the player's ID
         return this.playerId;
-    }
-
-    public void setLeft(TennisPlayerNode leftNode) { // Sets left node
-        this.leftChild = leftNode;
-    }
-
-    public void setRight(TennisPlayerNode rightNode) { // Sets right node
-        this.rightChild = rightNode;
-    }
-
-    public void insertMatch(TennisMatch m) {
     }
 
     public int compareTo(String input) {

@@ -47,8 +47,45 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
         return result;
     }
 
-    public void deletePlayer(String deletePlayerId) throws TennisDatabaseRuntimeException {
-        
+    public void deletePlayer(String id) {
+        TennisPlayerNode playerDelete = getTennisPlayerNode(id);
+        this.root.setNode(deleteNode(playerDelete));
+    }
+
+    public TennisPlayerNode deleteNode(TennisPlayerNode treeNode) {
+        if (treeNode.getLeftChild() == null) {
+            if (treeNode.getRightChild() == null) {
+                return null;
+            } else {
+                return treeNode.getRightChild();
+            }
+        } else if (treeNode.getRightChild() == null) {
+            return treeNode.getLeftChild();
+        } else {
+            TennisPlayerNode replacementItem = findLeftMost(treeNode.getRightChild());
+            TennisPlayerNode replacementRightChild = deleteLeftMost(treeNode.getRightChild());
+            treeNode.setPlayer(replacementItem.getPlayer());
+            treeNode.setRightChild(replacementRightChild);
+            return treeNode;
+        }
+    }
+
+    private TennisPlayerNode findLeftMost(TennisPlayerNode treeNode) {
+        if (treeNode.getLeftChild() == null) {
+            return treeNode;
+        } else {
+            return findLeftMost(treeNode.getLeftChild());
+        }
+    }
+
+    private TennisPlayerNode deleteLeftMost(TennisPlayerNode treeNode) {
+        if (treeNode.getLeftChild() == null) {
+            return treeNode.getRightChild();
+        } else {
+            TennisPlayerNode replacementLeftChild = deleteLeftMost(treeNode.getLeftChild());
+            treeNode.setLeftChild(replacementLeftChild);
+            return treeNode;
+        }
     }
 
     public TennisPlayerNode getTennisPlayerNode(String id) {
