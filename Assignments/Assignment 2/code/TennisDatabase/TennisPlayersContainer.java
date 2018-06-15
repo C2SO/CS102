@@ -5,17 +5,36 @@ CS102
 
 package TennisDatabase;
 
+import java.io.*;
+import java.util.*;
+
 public class TennisPlayersContainer implements TennisPlayersContainerInterface {
 
     private TennisPlayerNode root;
+    public int numPlayers;
 
     // Constructor (default).
     public TennisPlayersContainer() {
         this.root = null;
+        this.numPlayers = 0;
     }
 
     public void insertPlayer(TennisPlayer player) {
         this.root = insertPlayerRec(this.root, player);
+    }
+
+    public void exportPlayers(PrintStream write) {
+        exportPlayersRec(this.root, write);
+    }
+
+    public void exportPlayersRec(TennisPlayerNode currNode, PrintStream write) {
+        if (currNode != null) {
+            TennisPlayer currPlayer = currNode.getPlayer();
+            write.println("PLAYER/" + currPlayer.getId() + "/" + currPlayer.getFirstName() + "/" + currPlayer.getLastName() + "/"
+                    + currPlayer.getBirthYear() + "/" + currPlayer.getCountry());
+            exportPlayersRec(currNode.getLeftChild(), write);
+            exportPlayersRec(currNode.getRightChild(), write);
+        }
     }
 
     private TennisPlayerNode insertPlayerRec(TennisPlayerNode currRoot, TennisPlayer player) {

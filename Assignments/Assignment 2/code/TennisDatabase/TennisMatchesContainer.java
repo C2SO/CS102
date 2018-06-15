@@ -5,54 +5,48 @@ CS102
 
 package TennisDatabase;
 
+import java.util.LinkedList;
+
 import TennisDatabase.TennisDatabaseRuntimeException;
 
 public class TennisMatchesContainer implements TennisMatchesContainerInterface {
 
     // Defines all variables used in class
-    private TennisMatch[] tma;
-    private int sizeLogical;
-    private int sizePhysical;
+    private LinkedList<TennisMatch> tml;
 
     public TennisMatchesContainer() { // Cunstructor for TennisMatchesContainer
-        sizePhysical = 2;
-        sizeLogical = 0;
-        tma = new TennisMatch[sizePhysical];
+        tml = new LinkedList<TennisMatch>();
     }
 
     public void insertMatch(TennisMatch m) { // Inserts match into a resizable array
-        if (sizeLogical == sizePhysical) {
-            TennisMatch[] tmn = new TennisMatch[tma.length + 1];
-            for (int index = 0; index < tma.length; index++) {
-                tmn[index] = tma[index];
-            }
-            tma = tmn;
-            sizePhysical++;
-        }
-        int index;
-        for (index = 0; (index < sizeLogical) && (m.compareTo(tma[index]) < 0); index++) {
-        }
-        int insert = index;
-        if (insert == sizeLogical) {
-            tma[sizeLogical] = m;
-            sizeLogical++;
+        if (tml.size() == 0) {
+            tml.add(m);
         } else {
-            for (int i = sizeLogical - 1; i >= insert; i--) {
-                tma[i + 1] = tma[i];
+            boolean added = false;
+            int i = 0;
+            TennisMatch temp;
+            while (!added && i < tml.size()) {
+                temp = tml.get(i);
+                if (temp.compareTo(m) > 0) {
+                    tml.add(i - 1, m);
+                    added = true;
+                }
+                i++;
             }
-            tma[insert] = m;
-            sizeLogical++;
+            if (added == false) {
+                tml.add(i, m);
+            }
         }
     }
 
     public void printAllMatches(TennisPlayersContainer tpc) throws TennisDatabaseRuntimeException {
         System.out.println();
         System.out.println("Tennis Matches on Record: ");
-        if (tma.length == 0) {
+        if (tml.size() == 0) {
             throw new TennisDatabaseRuntimeException("No Tennis Matches Available");
         } else {
-            for (int i = 0; i < sizeLogical; i++) {
-                tma[i].print(tpc);
+            for (int i = 0; i < tml.size(); i++) {
+                tml.get(i).print(tpc);
             }
         }
         System.out.println();
@@ -62,36 +56,34 @@ public class TennisMatchesContainer implements TennisMatchesContainerInterface {
         String winLoss = "";
         int totalWins = 0;
         int totalLoss = 0;
-        if (tma.length == 0){
+        if (tml.size() == 0) {
             throw new TennisDatabaseRuntimeException("There are no tennis matches for that player\n");
-        }
-        else {
+        } else {
             int matchCount = 0;
-            for (int i = 0; i < sizeLogical; i++){
-                if (tma[i].getPlayer1Id().equals(id))
+            for (int i = 0; i < tml.size(); i++) {
+                if (tml.get(i).getPlayer1Id().equals(id))
                     matchCount++;
-                if (tma[i].getPlayer2Id().equals(id))
+                if (tml.get(i).getPlayer2Id().equals(id))
                     matchCount++;
             }
-            TennisMatch[] pMatches = new TennisMatch[matchCount];//make array of size equal to the number of matches a player has
-            matchCount = 0;//reset match count
-            for (int i = 0; i < sizeLogical; i++) {
-                if (tma[i].getPlayer1Id().equals(id)) {
-                    pMatches[matchCount] = tma[i];
-                    if(getScore(pMatches[matchCount].getScore(), id, pMatches[matchCount]) == 1){
+            TennisMatch[] pMatches = new TennisMatch[matchCount];// make array of size equal to the number of matches a
+                                                                 // player has
+            matchCount = 0;// reset match count
+            for (int i = 0; i < tml.size(); i++) {
+                if (tml.get(i).getPlayer1Id().equals(id)) {
+                    pMatches[matchCount] = tml.get(i);
+                    if (getScore(pMatches[matchCount].getScore(), id, pMatches[matchCount]) == 1) {
                         totalWins++;
-                    }
-                    else{
+                    } else {
                         totalLoss++;
                     }
                     matchCount++;
                 }
-                if (tma[i].getPlayer2Id().equals(id)) {
-                    pMatches[matchCount] = tma[i];
-                    if(getScore(pMatches[matchCount].getScore(), id, pMatches[matchCount]) == 1){
+                if (tml.get(i).getPlayer2Id().equals(id)) {
+                    pMatches[matchCount] = tml.get(i);
+                    if (getScore(pMatches[matchCount].getScore(), id, pMatches[matchCount]) == 1) {
                         totalWins++;
-                    }
-                    else{
+                    } else {
                         totalLoss++;
                     }
                     matchCount++;
@@ -170,15 +162,15 @@ public class TennisMatchesContainer implements TennisMatchesContainerInterface {
     }
 
     public void printMatchesOfPlayer(String Id, TennisPlayersContainer tpc) throws TennisDatabaseRuntimeException {
-        if (tma.length == 0) { //if no matches
+        if (tml.size() == 0) { // if no matches
             throw new TennisDatabaseRuntimeException("No Tennis Matches Available");
         } else {
-            for (int i = 0; i < sizeLogical; i++) { //for all matches
+            for (int i = 0; i < tml.size(); i++) { // for all matches
 
-                if (tma[i].getPlayer1Id().equals(Id))
-                    tma[i].print(tpc);//print if player id1 is id
-                if (tma[i].getPlayer2Id().equals(Id))
-                    tma[i].print(tpc);//print if player id2 is id
+                if (tml.get(i).getPlayer1Id().equals(Id))
+                    tml.get(i).print(tpc);// print if player id1 is id
+                if (tml.get(i).getPlayer2Id().equals(Id))
+                    tml.get(i).print(tpc);// print if player id2 is id
             }
         }
     }
