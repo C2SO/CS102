@@ -1,6 +1,4 @@
 
-
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -25,14 +23,14 @@ public class LoginForm extends Application {
 
     // ...
     @Override
-    public void start( Stage primaryStage ) {
+    public void start(Stage primaryStage) {
         // ...
-        primaryStage.setTitle( "JavaFX Welcome" );
+        primaryStage.setTitle("JavaFX Welcome");
         GridPane grid = new GridPane(); // GridPane lays out its children within a flexible grid of rows and columns.
-        grid.setAlignment( Pos.CENTER ); // The alignment of of the grid.
-        grid.setHgap( 10 );
-        grid.setVgap( 10 );
-        grid.setPadding( new Insets( 25, 25, 25, 25 ) );
+        grid.setAlignment(Pos.CENTER); // The alignment of of the grid.
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(25, 25, 25, 25));
         // ...
         Text scenetitle = new Text("Welcome");
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
@@ -61,26 +59,26 @@ public class LoginForm extends Application {
         grid.setColumnSpan(actiontarget, 2);
         grid.setHalignment(actiontarget, RIGHT);
         actiontarget.setId("actiontarget");
-        
-        // ...
-        btn.setOnAction( new EventHandler<ActionEvent>() {
-            // ...
-            @Override
-            public void handle( ActionEvent e ) {
-                actiontarget.setFill( Color.FIREBRICK );
-                actiontarget.setText( "Sign in button pressed: " + userTextField.getText() + " " + pwBox.getText() ); } } );
 
         // ...
-        Scene scene = new Scene( grid, 300, 275 );
-        primaryStage.setScene( scene );
+        btn.setOnAction(new EventHandler<ActionEvent>() {
+            // ...
+            @Override
+            public void handle(ActionEvent e) {
+                actiontarget.setFill(Color.FIREBRICK);
+                actiontarget.setText("Sign in button pressed: " + userTextField.getText() + " " + pwBox.getText());
+            }
+        });
+
+        // ...
+        Scene scene = new Scene(grid, 300, 275);
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
     // ...
-    public static void main( String[] args ) {
-        launch( args ); // ...
+    public static void main(String[] args) {
+        launch(args); // ...
     }
 
 }
-
-

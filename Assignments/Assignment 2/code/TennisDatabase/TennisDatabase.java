@@ -21,15 +21,10 @@ public class TennisDatabase implements TennisDatabaseInterface {
         tmc = new TennisMatchesContainer();
     }
 
-    public void loadFile() {
-        Scanner terminal = new Scanner(System.in);
-        String fileName;
+    public void loadFile(String fileName) {
         boolean valid = false;
         do {
             try {
-                System.out.println("Enter a file name: ");
-                System.out.println("Example: inputFile.txt");
-                fileName = terminal.next();
                 inFile = new File(fileName);
                 read = new Scanner(inFile);
                 valid = true;
@@ -90,7 +85,7 @@ public class TennisDatabase implements TennisDatabaseInterface {
     public void resetDatabase() {
         this.tmc = new TennisMatchesContainer();
         this.tpc = new TennisPlayersContainer();
-        loadFile();
+        // loadFile();
     }
 
     public void exportFile() {

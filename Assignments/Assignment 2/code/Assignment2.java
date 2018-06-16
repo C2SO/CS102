@@ -13,9 +13,20 @@ import TennisDatabase.TennisDatabaseRuntimeException;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import static javafx.geometry.HPos.RIGHT; // Static import allows unqualified access to static member: RIGHT (see line 62).
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Assignment2 extends Application {
@@ -24,6 +35,44 @@ public class Assignment2 extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        GridPane grid = new GridPane(); // GridPane lays out its children within a flexible grid of rows and columns.
+
+        grid.setAlignment(Pos.CENTER); // The alignment of of the grid.
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(25, 25, 25, 25));
+
+        Text scenetitle = new Text("What file would you like to import from?");
+        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+        grid.add(scenetitle, 0, 0, 2, 1);
+        // ...
+        Label fileName = new Label("File Name:");
+        grid.add(fileName, 0, 1);
+        // ...
+        TextField fileTextField = new TextField();
+        grid.add(fileTextField, 1, 1);
+
+        Button btnFile = new Button("Import File");
+        HBox hbBtn = new HBox(10);
+        hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
+        hbBtn.getChildren().add(btnFile);
+        grid.add(hbBtn, 1, 4);
+
+        final Text actiontarget = new Text();
+        grid.add(actiontarget, 0, 6);
+        grid.setColumnSpan(actiontarget, 2);
+        grid.setHalignment(actiontarget, RIGHT);
+        actiontarget.setId("actiontarget");
+
+        btnFile.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                actiontarget.setFill(Color.FIREBRICK);
+                tdb.loadFile(fileTextField.getText());
+                actiontarget.setText("File Imported");
+            }
+        });
+
         Button btn = new Button();
         btn.setText("Print All Players");
         btn.setOnAction(new EventHandler<ActionEvent>() {
@@ -32,9 +81,8 @@ public class Assignment2 extends Application {
                 tdb.printAllPlayers(); // Print All Players
             }
         });
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        Scene scene = new Scene(root, 500, 250);
+        hbBtn.getChildren().add(btn);
+        Scene scene = new Scene(grid, 500, 250);
         primaryStage.setTitle("Tennis Database");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -43,8 +91,6 @@ public class Assignment2 extends Application {
     public static void main(String[] args) throws FileNotFoundException {
         // Check if there are no command line arguments
         tdb = new TennisDatabase();
-        // Load Data from file
-        tdb.loadFile();
         // Check command and activate the relative tennis database opertations
         // runProgram();
         launch(args);
@@ -110,7 +156,7 @@ public class Assignment2 extends Application {
                 tdb.exportFile();
                 break;
             case 8: // Imports another file
-                tdb.loadFile();
+                // tdb.loadFile();
                 break;
             case 9: // Resets Database
                 // System.out.println();
