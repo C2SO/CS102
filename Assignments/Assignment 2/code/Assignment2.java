@@ -10,10 +10,35 @@ import java.util.Scanner;
 import TennisDatabase.TennisDatabase;
 import TennisDatabase.TennisDatabaseException;
 import TennisDatabase.TennisDatabaseRuntimeException;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
-public class Assignment2 {
+public class Assignment2 extends Application {
 
     static TennisDatabase tdb;
+
+    @Override
+    public void start(Stage primaryStage) {
+        Button btn = new Button();
+        btn.setText("Print All Players");
+        btn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                tdb.printAllPlayers(); // Print All Players
+            }
+        });
+        StackPane root = new StackPane();
+        root.getChildren().add(btn);
+        Scene scene = new Scene(root, 500, 250);
+        primaryStage.setTitle("Tennis Database");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
 
     public static void main(String[] args) throws FileNotFoundException {
         // Check if there are no command line arguments
@@ -21,7 +46,8 @@ public class Assignment2 {
         // Load Data from file
         tdb.loadFile();
         // Check command and activate the relative tennis database opertations
-        runProgram();
+        // runProgram();
+        launch(args);
     }
 
     public static void runProgram() {
