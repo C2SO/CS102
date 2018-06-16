@@ -1,3 +1,4 @@
+
 /*
 Nicholas Rahbany
 CS102
@@ -71,7 +72,8 @@ public class Assignment2 {
                 String tournamentInput = user.next();
                 System.out.println("Enter the Score\nExample: 6-4,5-7,6-4,6-4");
                 String scoreInput = user.next();
-                tdb.insertMatch(idPlayer1, idPlayer2, yearInput, monthInput, dayInput, tournamentInput, scoreInput); // Adds match
+                tdb.insertMatch(idPlayer1, idPlayer2, yearInput, monthInput, dayInput, tournamentInput, scoreInput); // Adds
+                                                                                                                     // match
                 break;
             case 6: // Asks user to giver player ID to delete
                 System.out.println("What Player ID would you like to delete?");
@@ -89,7 +91,7 @@ public class Assignment2 {
                 // System.out.println("Would you like to export the database? (Y or N)");
                 // String export = user.next();
                 // if (export == "Y" || export == "y") {
-                //     System.out.println("Not implemented yet");
+                // System.out.println("Not implemented yet");
                 // }
                 tdb.resetDatabase();
                 break;
@@ -97,10 +99,10 @@ public class Assignment2 {
                 systemRunning = false; // Stops the program
                 break;
             default:
-                System.out.println("Please choose an option that was listed..."); // If user selected an option not shown
+                System.out.println("Please choose an option that was listed..."); // If user selected an option not
+                                                                                  // shown
                 break;
             }
         }
-        user.close();
     }
 }
