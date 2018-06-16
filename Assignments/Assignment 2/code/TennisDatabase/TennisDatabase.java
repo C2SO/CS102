@@ -56,7 +56,6 @@ public class TennisDatabase implements TennisDatabaseInterface {
                 break;
             }
         }
-        read.close();
     }
 
     public void printAllPlayers() {
@@ -95,19 +94,18 @@ public class TennisDatabase implements TennisDatabaseInterface {
     }
 
     public void exportFile() {
+        Scanner terminal = new Scanner(System.in);
         boolean valid = false;
         do {
             try {
-                outFile = new File("outputFile.txt");
-                read = new Scanner(outFile);
-                write = new PrintStream(outFile);
+                write = new PrintStream("outputFile.txt");
                 valid = true;
             } catch (FileNotFoundException invalidFile) {
                 System.out.println("Input a valid file name");
             }
         } while (!valid);
         tpc.exportPlayers(write);
-        // tmc.exportMatches(write);
+        tmc.exportMatches(write);
         System.out.println("The database has been exported to outputFile.txt");
     }
 }

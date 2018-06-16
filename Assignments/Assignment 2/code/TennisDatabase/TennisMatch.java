@@ -43,6 +43,22 @@ public class TennisMatch implements TennisMatchInterface {
         return this.month;
     }
 
+    public String getDate() {
+        String result = "";
+        result += this.year;
+        String month = "" + this.month;
+        if (month.length() == 1) {
+            month = "0" + month;
+        }
+        result += month;
+        String day = "" + this.day;
+        if (day.length() == 1) {
+            day = "0" + day;
+        }
+        result += day;
+        return result;
+    }
+
     public int getDateDay() { // Returns the day of the match
         return this.day;
     }

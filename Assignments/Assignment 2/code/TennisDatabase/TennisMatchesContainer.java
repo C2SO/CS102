@@ -6,6 +6,8 @@ CS102
 package TennisDatabase;
 
 import java.util.LinkedList;
+import java.io.*;
+import java.util.*;
 
 import TennisDatabase.TennisDatabaseRuntimeException;
 
@@ -172,6 +174,15 @@ public class TennisMatchesContainer implements TennisMatchesContainerInterface {
                 if (tml.get(i).getPlayer2Id().equals(Id))
                     tml.get(i).print(tpc);// print if player id2 is id
             }
+        }
+    }
+
+    public void exportMatches(PrintStream write) {
+        int size = tml.size();
+        for (int i = 0; i < size; i++) {
+            TennisMatch currMatch = tml.get(i);
+            write.println("MATCH/" + currMatch.getPlayer1Id() + "/" + currMatch.getPlayer2Id() + "/"
+                    + currMatch.getDate() + "/" + currMatch.getTournament() + "/" + currMatch.getScore());
         }
     }
 }
