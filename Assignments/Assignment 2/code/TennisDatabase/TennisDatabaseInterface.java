@@ -31,7 +31,7 @@ interface TennisDatabaseInterface {
       // Input: All the data required for a tennis player.
       // Warning: player id must be unique.
       // Output: Throws an exception if player id is already in this container.
-      public void insertPlayer(String id, String firstName, String lastName, int year, String country)
+      public void insertPlayer(String id, String firstName, String lastName, String year, String country)
                   throws TennisDatabaseRuntimeException;
 
       // Desc.: Insert a tennis match into the database.

@@ -39,7 +39,7 @@ public class TennisDatabase implements TennisDatabaseInterface {
             data = line.split("/"); // Parse the line
             switch (data[0].charAt(0)) { // Check to see if the line is a player or a match
             case 'P':
-                insertPlayer(data[1], data[2], data[3], Integer.parseInt(data[4]), data[5]); // Add Player
+                insertPlayer(data[1], data[2], data[3], data[4], data[5]); // Add Player
                 break;
             case 'M':
                 TennisPlayer player1 = tpc.getTennisPlayerNode(data[1]).getPlayer();
@@ -65,7 +65,7 @@ public class TennisDatabase implements TennisDatabaseInterface {
         tmc.printAllMatches(tpc); // Prints all matches
     }
 
-    public void insertPlayer(String id, String firstName, String lastName, int year, String country) { // Inserts player
+    public void insertPlayer(String id, String firstName, String lastName, String year, String country) { // Inserts player
         TennisPlayer p = new TennisPlayer(id, firstName, lastName, year, country);
         tpc.insertPlayer(p);
     }

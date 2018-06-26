@@ -114,7 +114,7 @@ public class TennisPlayersContainer implements TennisPlayersContainerInterface {
     public TennisPlayerNode getTennisPlayerNodeRec(String id, TennisPlayerNode currRoot) {
         TennisPlayerNode currNode = currRoot;
         if (currNode == null) {
-            TennisPlayer temp = new TennisPlayer(id, null, null, 0, null, true);
+            TennisPlayer temp = new TennisPlayer(id, null, null, null, null, true);
             insertPlayer(temp);
             return getTennisPlayerNode(id);
         }

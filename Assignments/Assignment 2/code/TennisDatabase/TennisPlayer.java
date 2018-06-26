@@ -11,11 +11,11 @@ public class TennisPlayer implements TennisPlayerInterface {
     public String id;
     public String firstName;
     public String lastName;
-    public int year;
+    public String year;
     public String country;
     public boolean dummy;
 
-    public TennisPlayer(String idIn, String firstNameIn, String lastNameIn, int yearIn, String countryIn) { // Constructor
+    public TennisPlayer(String idIn, String firstNameIn, String lastNameIn, String yearIn, String countryIn) { // Constructor
         this.id = idIn;
         this.firstName = firstNameIn;
         this.lastName = lastNameIn;
@@ -24,7 +24,7 @@ public class TennisPlayer implements TennisPlayerInterface {
         this.dummy = false;
     }
 
-    public TennisPlayer(String idIn, String firstNameIn, String lastNameIn, int yearIn, String countryIn, Boolean dummyIn) { // Constructor
+    public TennisPlayer(String idIn, String firstNameIn, String lastNameIn, String yearIn, String countryIn, Boolean dummyIn) { // Constructor
         this.id = idIn;
         this.firstName = firstNameIn;
         this.lastName = lastNameIn;
@@ -37,20 +37,40 @@ public class TennisPlayer implements TennisPlayerInterface {
         return this.id;
     }
 
+    public void setId(String input) { // Sets player's ID
+        this.id = input;
+    }
+
     public String getFirstName() { // Returns player's first name
         return this.firstName;
+    }
+
+    public void setFirstName(String input) { // Sets player's first name
+        this.firstName = input;
     }
 
     public String getLastName() { // Return the player's last name
         return this.lastName;
     }
 
-    public int getBirthYear() { // Return the player's birth year
+    public void setLastName(String input) { // Sets player's last name
+        this.lastName = input;
+    }
+
+    public String getBirthYear() { // Return the player's birth year
         return this.year;
+    }
+
+    public void setBirthYear(String input) { // Sets player's birth year
+        this.year = input;
     }
 
     public String getCountry() { // Return the player's country
         return this.country;
+    }
+
+    public void setCountry(String input) { // Sets player's country
+        this.country = input;
     }
 
     public boolean getDummy() {

@@ -16,7 +16,7 @@ interface TennisPlayerInterface extends Comparable<TennisPlayer> {
 
     public String getLastName();
 
-    public int getBirthYear();
+    public String getBirthYear();
 
     public String getCountry();
 
